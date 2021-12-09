@@ -7,5 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello World (❁´◡`❁)(❁´◡`❁)y>
+Hello World \(❁´◡`❁)(❁´◡`❁)y>
 </html>
