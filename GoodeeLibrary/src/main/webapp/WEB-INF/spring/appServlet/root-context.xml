@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- 접속정보 Properties 파일 읽기 -->
+	<context:property-placeholder location="classpath:properties/db.properties"/>
+	
+	<!-- 
+		접속정보 객체 BasicDataSource Bean 생성 , p를 이용하여 property를 대신 할 수 있다. property은 그것이 가지고 있는 메소드를 의미한다. 
+		namespaces p를 선언했다면 
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		p:driverClassName=${driver} p:url=${url} p:username=${username}>
+		예약어의 경우는 같이 바인딩이 되기 때문에 이 점을 유의 해줘야한다. 
+	-->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${user}"/>
+		<property name="password" value="${pw}"/>
+	</bean>
+		
+	<!-- 
+		MyBatis SqlSessionFactory를 Bean 생성
+		mybatis.jar
+		mybatis-spring.jar가 필요하다.
+		
+		mybatis는 둘 개의 정보가 필요하다 1번 접속정보 2번 mybatis에서 사용하는 환경(Alias, setting, mapper)가 필요하다. 
+		그런데 이 제어권은 현재 spring이 가지고 있고 환경은 configuration이 가지고 있다.
+	 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis/configuration.xml"/>
+	</bean>
+	
+	<!-- Spring DI(의존적 주입)을 위한 SqlSessionTemplate Bean 생성 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<!-- 
+		tx Transaction을 위한 TransationManager 생성  
+		1) Annotation을 위한 설정 => servlet-context.xml <tx:annotation-driven>
+		2) AOP 설정 -> advice(실행되는 메소드) , pointCut(실행되는 곳) , joinPoint(합쳐지는 곳을 의미한다.)
+		context:component-scan이 알아서 해준다.  spring-orm
+	-->	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 
+		servlet-context.xml에 Annotation 설정이 아닌 자동으로 AOP를 통해서 Transaction 동작
+		Trasncation의 동작 메소드는 throw가 발생 즉, 예외가 발생 했을 때 Transaction을 작동 시킨다. 
+		advice가 예외발생시가 된다. 
+	 -->
+	 
+	 <!-- 실행이 되지 않고 모두 rollback이 일어난다. 자바스크립트의 경우는 propagation를 이용해서 rollback 시킬 수 있다.
+	 stopPropagation를 이용하면 두개의 같은 이벤트들이 일어날 경우 첫번째 이벤트만 나오도록 할 수가 있다.  
+	 그 외에도 defaultPrevented를 사용할 수 있다. 이것은 하나는 이벤트 a 태그 같은 변화가 이루어질 때 하나를 멈출 수 있다.
+	 -->
+	 <tx:advice id="txManager" transaction-manager="transactionManager">
+	 	<tx:attributes>
+	 		<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+	 	</tx:attributes>
+	 </tx:advice>
+	
+	
+	<!-- servlet-context.xml에서는 @ 기법으로 사용해서 오류가 날 수도 있다. -->
+	<aop:config>
+		<aop:advisor advice-ref="txManager" pointcut="execution(public * com.min.edu.model.*Service*.*(..))"/>
+	</aop:config>
+	
+	<!--메일보내기  -->
+	<!-- 서버의 정보를 입력해주면 됨 -->
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.naver.com"/>
+		<property name="port" value="587"/>
+		<property name="username" value="answogh123"/>
+		<!-- <property name="password" value="wjstkwogh12@!"/> -->
+		<!-- 만약에 비밀번호 특수문자가 있다면 CDATA -->
+		<property name="password">
+			<value>
+				<![CDATA[wjstkwogh12@!]]>
+			</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.debug">true</prop> <!-- 메일보낼때 log -->
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<!-- 만약 TLS가 문제가 발생하면 false 해도 됨 아니면 인증키를 생성 -->
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>
