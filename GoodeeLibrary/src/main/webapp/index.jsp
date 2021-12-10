@@ -8,4 +8,6 @@
 </head>
 <body>
 Hello World \(❁´◡`❁)/\(❁´◡`❁)y>
+
+<a href="./search_book.do">책검색</a>
 </html>
