@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.MemberDaoImpl">
+
+<!-- 회원추가 -->
+<insert id="insertMember" parameterType="memberDto">
+INSERT INTO BOOK_MEMBER
+		(MEMBER_SEQ, ID, PASSWORD,
+		 NAME, NICKNAME, PHONE,
+		 AUTH, BANFLAG, DECLARE_COUNT,
+		 MEMBER_DELFLAG)
+	VALUES (BM_SEQ.NEXTVAL, #{id}, #{password},
+			#{name}, #{nickname}, #{phone},
+			'U', 'N', 0,
+			'N')
+</insert>
+
+<!-- 회원삭제(UPDATE) -->
+<update id="delflagMember" parameterType="java.lang.Integer">
+UPDATE BOOK_MEMBER
+		SET MEMBER_DELFLAG='Y'
+		WHERE MEMBER_SEQ=#{member_seq}
+</update>
+
+<!-- 비밀번호 변경 -->
+<update id="changeMemberPw" parameterType="memberDto">
+UPDATE BOOK_MEMBER 
+		SET PASSWORD = #{password}
+		WHERE MEMBER_SEQ =#{member_seq}
+</update>
+
+<!-- 로그인 -->
+<select id="loginMember" parameterType="memberDto" resultType="memberDto">
+SELECT MEMBER_SEQ, ID, PASSWORD,
+		 NAME, NICKNAME, PHONE,
+		 AUTH, BANFLAG, DECLARE_COUNT,
+		 MEMBER_DELFLAG
+	FROM BOOK_MEMBER bm 
+	WHERE ID = #{id} AND PASSWORD = #{password}
+	AND MEMBER_DELFLAG = 'N'
+</select>
+
+
+</mapper>
