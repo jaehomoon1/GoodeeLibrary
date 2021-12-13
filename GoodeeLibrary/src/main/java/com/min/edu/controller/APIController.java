@@ -30,6 +30,9 @@ public class APIController {
 		RestTemplate restTemplate = new RestTemplate();
 		kakaoBook kakaoBook = null;
 		
+		if(searchWord == "") {
+			return "book/searchBook";
+		}
 		//kakao 전송을 위한 헤더정보인 Authorization KakaoAK {appkey}를 요청 할때 보내
 		MultiValueMap<String, String> header = new LinkedMultiValueMap<String, String>();
 		header.add("Authorization", "KakaoAK "+kakao_rest_api_appkey);
@@ -48,8 +51,8 @@ public class APIController {
 		logger.info("카카오 북에 요청된 결과 값 \n {}",kakaoBook);
 		
 		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("book_name", searchWord);
 		model.addAttribute("kakaoBook",kakaoBook);
-		
 		
 		return "book/searchBook";
 	}
