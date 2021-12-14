@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인 이후 화면</title>
 </head>
 <body>
-Hello World \(❁´◡`❁)/\(❁´◡`❁)y>
 
-<a href="./search_book.do">책검색</a>
-<a href="./loginForm.do">로그인화면</a>
+</body>
 </html>
