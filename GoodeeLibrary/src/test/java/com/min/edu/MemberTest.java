@@ -31,13 +31,29 @@ public class MemberTest {
 //		assertNotNull(context);
 //		assertNotNull(session);
 		
-		BookMemberVo vo = new BookMemberVo();
-		vo.setId("USER99");
-		vo.setPassword("1234");
-		vo.setName("홍길동");
-		vo.setNickname("hong");
-		vo.setPhone("01011112222");
-		assertNotNull(dao.insertMember(vo));
+//		//회원추가
+//		BookMemberVo vo = new BookMemberVo();
+//		vo.setId("USER99");
+//		vo.setPassword("1234");
+//		vo.setName("홍길동");
+//		vo.setNickname("hong");
+//		vo.setPhone("01011112222");
+//		assertNotNull(dao.insertMember(vo));
+		
+//		//로그인
+//		BookMemberVo vo = new BookMemberVo();
+//		vo.setId("USER01");
+//		vo.setPassword("4321");
+//		assertNotNull(dao.loginMember(vo));
+		
+//		//회원삭제(delflag)
+//		assertEquals(dao.delflagMember(3), 1); 
+		
+//		//비밀번호 변경
+//		BookMemberVo vo = new BookMemberVo();
+//		vo.setMember_seq(3);
+//		vo.setPassword("4321");
+//		assertEquals(dao.changeMemberPw(vo), 1);
 	}
 
 }
