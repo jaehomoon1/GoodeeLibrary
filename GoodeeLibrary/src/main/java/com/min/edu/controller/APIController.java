@@ -1,5 +1,7 @@
 package com.min.edu.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -49,7 +51,7 @@ public class APIController {
 		
 		kakaoBook = kakaoBookResponseEntitiy.getBody(); //jackson property에 담아줌
 		logger.info("카카오 북에 요청된 결과 값 \n {}",kakaoBook);
-		
+		System.out.println(kakaoBook.getDocuments());
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("book_name", searchWord);
 		model.addAttribute("kakaoBook",kakaoBook);
@@ -61,5 +63,13 @@ public class APIController {
 	public String searchbook() {
 		
 		return "book/searchBook";
+	}
+	
+	@GetMapping(value = "/bookdetail.do")
+	public String bookdetail(String thumbnail ,String title , Model model) {
+		
+		model.addAttribute("thumbnail",thumbnail);
+		model.addAttribute("title",title);
+		return "book/bookDetail";
 	}
 }

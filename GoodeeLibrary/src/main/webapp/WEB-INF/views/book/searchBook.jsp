@@ -46,6 +46,7 @@
 	function kakaobook(){
 		var book = document.getElementById("book_name").value;
 		location.href="./kakao_book.do?searchWord="+book;
+		document.getElementById("book_name").focus;
 	}
 	
 	function Enter_Check(){
@@ -53,7 +54,7 @@
 	if(event.keyCode == 13){
 		kakaobook();  // 실행할 이벤트
 	}
-	book_name = document.getElementById("book_name").value;
+	
 }
 	
 	
@@ -72,7 +73,7 @@
 
 	
 	<table class="table">
-	   <c:forEach var="book" items="${kakaoBook.documents}">
+	   <c:forEach var="book" varStatus="" items="${kakaoBook.documents}">
     <thead>
       <tr>
         <th>이미지</th>
@@ -86,7 +87,7 @@
       
    
       <tr>
-       <td><img src="${book.thumbnail}"></td>
+       <td><a href="./bookdetail.do?thumbnail=${book.thumbnail}&title=${book.title}"><img src="${book.thumbnail}"></a></td>
         <td>${book.title}</td>
         <td>${book.authors}</td>
         <td> ${book.contents}</td>

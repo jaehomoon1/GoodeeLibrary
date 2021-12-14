@@ -28,16 +28,16 @@ public class MemberTest {
 	
 	@Test
 	public void test() {
-//		assertNotNull(context);
+		assertNotNull(context);
 //		assertNotNull(session);
 		
-		BookMemberVo vo = new BookMemberVo();
-		vo.setId("USER99");
-		vo.setPassword("1234");
-		vo.setName("홍길동");
-		vo.setNickname("hong");
-		vo.setPhone("01011112222");
-		assertNotNull(dao.insertMember(vo));
+//		BookMemberVo vo = new BookMemberVo();
+//		vo.setId("USER99");
+//		vo.setPassword("1234");
+//		vo.setName("홍길동");
+//		vo.setNickname("hong");
+//		vo.setPhone("01011112222");
+//		assertNotNull(dao.insertMember(vo));
 	}
 
 }
