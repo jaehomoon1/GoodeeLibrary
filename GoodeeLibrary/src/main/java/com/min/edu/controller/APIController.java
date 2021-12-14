@@ -1,5 +1,7 @@
 package com.min.edu.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -30,6 +32,9 @@ public class APIController {
 		RestTemplate restTemplate = new RestTemplate();
 		kakaoBook kakaoBook = null;
 		
+		if(searchWord == "") {
+			return "book/searchBook";
+		}
 		//kakao 전송을 위한 헤더정보인 Authorization KakaoAK {appkey}를 요청 할때 보내
 		MultiValueMap<String, String> header = new LinkedMultiValueMap<String, String>();
 		header.add("Authorization", "KakaoAK "+kakao_rest_api_appkey);
@@ -46,10 +51,10 @@ public class APIController {
 		
 		kakaoBook = kakaoBookResponseEntitiy.getBody(); //jackson property에 담아줌
 		logger.info("카카오 북에 요청된 결과 값 \n {}",kakaoBook);
-		
+		System.out.println(kakaoBook.getDocuments());
 		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("book_name", searchWord);
 		model.addAttribute("kakaoBook",kakaoBook);
-		
 		
 		return "book/searchBook";
 	}
@@ -58,5 +63,13 @@ public class APIController {
 	public String searchbook() {
 		
 		return "book/searchBook";
+	}
+	
+	@GetMapping(value = "/bookdetail.do")
+	public String bookdetail(String thumbnail ,String title , Model model) {
+		
+		model.addAttribute("thumbnail",thumbnail);
+		model.addAttribute("title",title);
+		return "book/bookDetail";
 	}
 }

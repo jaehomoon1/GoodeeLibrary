@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!-- w3cschool css -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>책검색</title>
 <style type="text/css">
 .green_window {
 	display: inline-block;
@@ -25,7 +26,7 @@
 
 .sch_smit {
 	width: 54px;
-	height: 40px;
+	height: 44px;
 	margin: 0;
 	border: 0;
 	vertical-align: top;
@@ -45,28 +46,56 @@
 	function kakaobook(){
 		var book = document.getElementById("book_name").value;
 		location.href="./kakao_book.do?searchWord="+book;
+		document.getElementById("book_name").focus;
 	}
+	
+	function Enter_Check(){
+        // 엔터키의 코드는 13입니다.
+	if(event.keyCode == 13){
+		kakaobook();  // 실행할 이벤트
+	}
+	
+}
+	
+	
 </script>
 
 </head>
 <body>
 
+<div class="container">
+
 
 	<span class='green_window'> 
-	<input type="text" id="book_name" class='input_text'>
+	<input type="text" id="book_name" name="book_name" class='input_text' placeholder="책 제목을 입력해주세요." onkeydown="Enter_Check();" value="${book_name}">
 	</span>
 	<button id="search" class='sch_smit' onclick=kakaobook()>검색</button>
-	<br>
+
 	
-
-	<c:forEach var="book" items="${kakaoBook.documents}">
-	제목 : ${book.title}<br>
-	저자 : ${book.authors}<br>
-	내용 : ${book.contents}<br>
-	이미지 : <img src="${book.thumbnail}">
-		<br>
-
+	<table class="table">
+	   <c:forEach var="book" varStatus="" items="${kakaoBook.documents}">
+    <thead>
+      <tr>
+        <th>이미지</th>
+        <th>제목</th>
+        <th>저자</th>
+        <th>내용</th>
+      </tr>
+    </thead>
+    
+ 	<tbody>
+      
+   
+      <tr>
+       <td><a href="./bookdetail.do?thumbnail=${book.thumbnail}&title=${book.title}"><img src="${book.thumbnail}"></a></td>
+        <td>${book.title}</td>
+        <td>${book.authors}</td>
+        <td> ${book.contents}</td>
+      </tr>
 	</c:forEach>
-
+ 	 </tbody>
+	</table>
+	
+</div>
 </body>
 </html>

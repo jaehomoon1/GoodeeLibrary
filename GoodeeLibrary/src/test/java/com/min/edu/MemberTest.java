@@ -54,6 +54,14 @@ public class MemberTest {
 //		vo.setMember_seq(3);
 //		vo.setPassword("4321");
 //		assertEquals(dao.changeMemberPw(vo), 1);
+
+//		BookMemberVo vo = new BookMemberVo();
+//		vo.setId("USER99");
+//		vo.setPassword("1234");
+//		vo.setName("홍길동");
+//		vo.setNickname("hong");
+//		vo.setPhone("01011112222");
+//		assertNotNull(dao.insertMember(vo));
 	}
 
 }
