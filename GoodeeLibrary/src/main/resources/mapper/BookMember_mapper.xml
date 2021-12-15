@@ -40,5 +40,4 @@ SELECT MEMBER_SEQ, ID, PASSWORD,
 	AND MEMBER_DELFLAG = 'N'
 </select>
 
-
 </mapper>

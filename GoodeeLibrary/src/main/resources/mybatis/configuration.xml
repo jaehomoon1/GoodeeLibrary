@@ -6,9 +6,9 @@
 	<typeAlias type="com.min.edu.vo.BookMemberVo" alias="memberDto"/>
 </typeAliases>
 
-
 <mappers>
 	<mapper resource="mapper/BookMember_mapper.xml"/>
+	<mapper resource="mapper/BookDetail_mapper.xml"/>
 </mappers>
 
 </configuration>
