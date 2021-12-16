@@ -12,6 +12,7 @@
 <mappers>
 	<mapper resource="mapper/BookMember_mapper.xml"/>
 	<mapper resource="mapper/BookDetail_mapper.xml"/>
+	<mapper resource="mapper/UseLibrary_mapper.xml"/>
 </mappers>
 
 </configuration>
