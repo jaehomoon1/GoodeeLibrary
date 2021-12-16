@@ -3,7 +3,7 @@
 <mapper namespace="com.min.edu.model.MemberDaoImpl">
 
 <!-- 회원추가 -->
-<insert id="insertMember" parameterType="memberDto">
+<insert id="insertMember" parameterType="memberVo">
 INSERT INTO BOOK_MEMBER
 		(MEMBER_SEQ, ID, PASSWORD,
 		 NAME, NICKNAME, PHONE,
@@ -23,14 +23,14 @@ UPDATE BOOK_MEMBER
 </update>
 
 <!-- 비밀번호 변경 -->
-<update id="changeMemberPw" parameterType="memberDto">
+<update id="changeMemberPw" parameterType="memberVo">
 UPDATE BOOK_MEMBER 
 		SET PASSWORD = #{password}
 		WHERE MEMBER_SEQ =#{member_seq}
 </update>
 
 <!-- 로그인 -->
-<select id="loginMember" parameterType="memberDto" resultType="memberDto">
+<select id="loginMember" parameterType="memberVo" resultType="memberVo">
 SELECT MEMBER_SEQ, ID, PASSWORD,
 		 NAME, NICKNAME, PHONE,
 		 AUTH, BANFLAG, DECLARE_COUNT,
@@ -39,5 +39,8 @@ SELECT MEMBER_SEQ, ID, PASSWORD,
 	WHERE ID = #{id} AND PASSWORD = #{password}
 	AND MEMBER_DELFLAG = 'N'
 </select>
+
+
+
 
 </mapper>

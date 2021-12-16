@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 이후 화면</title>
+<title>회원가입</title>
 </head>
 <body>
 

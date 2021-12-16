@@ -2,6 +2,9 @@ package com.min.edu;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.min.edu.model.IBookMemberDao;
+import com.min.edu.model.IUseLibraryDao;
 import com.min.edu.vo.BookMemberVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,6 +29,8 @@ public class MemberTest {
 	
 	@Autowired
 	private IBookMemberDao dao;
+	@Autowired
+	private IUseLibraryDao uldao;
 	
 	@Test
 	public void test() {
@@ -62,6 +68,30 @@ public class MemberTest {
 //		vo.setNickname("hong");
 //		vo.setPhone("01011112222");
 //		assertNotNull(dao.insertMember(vo));
+		
+		// 대출중인지 확인
+//		assertEquals(5, uldao.checkDetailSeq(1));
+//		int n = uldao.checkDetailSeq(1);
+//		assertNotNull(uldao.checkLoan(n));
+//		uldao.checkLoan(n);
+		
+//		// 도서 대출하기
+//		Map<String, Object> map1 = new HashMap<String, Object>();
+//		map1.put("seq", 3);
+//		assertEquals(1, uldao.insertLoan(map1));
+//		Map<String, Object> map2 = new HashMap<String, Object>();
+//		map2.put("book_seq", 1);
+//		assertEquals(1, uldao.insertBookDetail(map2));
+		
+//		// 도서 예약하기
+//		Map<String, Object> map1 = new HashMap<String, Object>();
+//		map1.put("seq", 24);
+//		assertEquals(1, uldao.insertReservation(map1));
+//		assertEquals(1, uldao.updateDetailR((int) map1.get("seq")));
+		
+		// 회원이 대출한 도서목록
+		assertNotNull(uldao.memberLoanList("USER01"));
+		
 	}
 
 }
