@@ -3,7 +3,10 @@
 <configuration>
 
 <typeAliases>
-	<typeAlias type="com.min.edu.vo.BookMemberVo" alias="memberDto"/>
+	<typeAlias type="com.min.edu.vo.BookMemberVo" alias="memberVo"/>
+	<typeAlias type="com.min.edu.vo.BookLoanVo" alias="loanVo"/>
+	<typeAlias type="com.min.edu.vo.BookDetailVo" alias="detailVo"/>
+	<typeAlias type="com.min.edu.vo.BookReservationVo" alias="reserveVo"/>
 </typeAliases>
 
 <mappers>

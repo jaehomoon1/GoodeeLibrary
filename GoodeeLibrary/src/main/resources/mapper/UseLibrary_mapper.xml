@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.UseLibraryDaoImpl">
+
+<insert id="insertLoan" parameterType="java.util.Map">
+INSERT INTO BOOK_LOAN
+	(LOAN_SEQ, LOAN_SDAY, LOAN_EDAY, LOAN_CHECK, MEMBER_SEQ)
+	VALUES(LOAN_SEQ.NEXTVAL, SYSDATE, SYSDATE+7, 'N', #{seq})
+</insert>
+
+<insert id="insertBookDetail" parameterType="java.util.Map">
+INSERT INTO BOOK_DETAIL
+(DETAIL_SEQ, BOOK_SEQ, LOAN_SEQ, RESERVE_SEQ, DAMAGE_SEQ)
+VALUES(DETAIL_SEQ.NEXTVAL, #{bookSeq}, #{loanSeq}, '', '')
+</insert>
+
+</mapper>
