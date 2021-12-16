@@ -10,11 +10,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.min.edu.model.bdd.IBddDao;
+import com.min.edu.model.bd.IBdDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
-public class Bdd_Test {
+public class Bd_Test {
 
 	@Autowired
 	private ApplicationContext context;
@@ -23,7 +23,7 @@ public class Bdd_Test {
 	private SqlSessionTemplate session;
 	
 	@Autowired
-	private IBddDao dao;
+	private IBdDao dao;
 	
 	@Test
 	public void test() {
