@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello World \(❁´◡`❁)/\(❁´◡`❁)y>
-
+Hello World \(❁´◡`❁)/\(❁´◡`❁)╰(*°▽°*)╯╰(*°▽°*)╯
 <a href="./search_book.do">책검색</a>
 <a href="./loginForm.do">로그인화면</a>
 </html>
