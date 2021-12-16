@@ -1,7 +1,6 @@
 package com.min.edu;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,11 +10,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.min.edu.model.bd.IBdDao;
+import com.min.edu.model.book.IBookDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
-public class Bd_Test {
+public class Book_test {
 
 	@Autowired
 	private ApplicationContext context;
@@ -24,19 +23,22 @@ public class Bd_Test {
 	private SqlSessionTemplate session;
 	
 	@Autowired
-	private IBdDao dao;
+	private IBookDao dao;
 	
 	@Test
 	public void test() {
-		
+	
 		assertNotNull(context);
 		assertNotNull(session);
 		
-		// 도서훼손신고(damagedBook)
-		assertEquals(dao.damagedBook(1), 1); 
-//		System.out.println(dao.damagedBook(1));
+		//훼손 도서 목록 조회
+//		assertNotNull(dao.damagedBookList(4)); 
+//		System.out.println(dao.damagedBookList(4));
+		
+		//미훼손 도서 목록 조회
+		assertNotNull(dao.undamagedBookList(1));
+//		System.out.println(dao.undamagedBookList(1));
 		
 	}
-	
 
 }
