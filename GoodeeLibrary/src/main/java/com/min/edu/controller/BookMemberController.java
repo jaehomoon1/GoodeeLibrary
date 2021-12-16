@@ -27,8 +27,6 @@ public class BookMemberController {
 	@Autowired
 	private IBookMemberService service;
 	
-	
-	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(@RequestParam("id") String id, @RequestParam("pw") String pw,
 						HttpSession session, HttpServletResponse resp) throws IOException {
