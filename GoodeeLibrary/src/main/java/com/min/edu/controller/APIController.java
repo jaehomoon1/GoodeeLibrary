@@ -1,5 +1,8 @@
 package com.min.edu.controller;
 
+import java.net.http.HttpRequest;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -12,10 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
+import com.min.edu.book.Document;
 import com.min.edu.book.kakaoBook;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 public class APIController {
@@ -50,12 +57,12 @@ public class APIController {
 						);
 		
 		kakaoBook = kakaoBookResponseEntitiy.getBody(); //jackson property에 담아줌
+		
 		logger.info("카카오 북에 요청된 결과 값 \n {}",kakaoBook);
-		System.out.println(kakaoBook.getDocuments());
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("book_name", searchWord);
 		model.addAttribute("kakaoBook",kakaoBook);
-		
+		System.out.println(kakaoBook.getDocuments().get(0).getAuthors());
 		return "book/searchBook";
 	}
 	
@@ -65,11 +72,24 @@ public class APIController {
 		return "book/searchBook";
 	}
 	
-	@GetMapping(value = "/bookdetail.do")
-	public String bookdetail(String thumbnail ,String title , Model model) {
+	@PostMapping(value = "/bookdetail.do")
+	public String bookdetail(String thumbnail ,String title ,String contents,
+			String datetime, String isbn, String price,
+			String publisher, String authors ,Model model) {
 		
+		
+		
+		model.addAttribute("authors",authors);
+		model.addAttribute("publisher",publisher);
+		model.addAttribute("datetime",datetime);
+		model.addAttribute("isbn",isbn);
+		model.addAttribute("price",price);
+		model.addAttribute("contents",contents);
 		model.addAttribute("thumbnail",thumbnail);
 		model.addAttribute("title",title);
+		
 		return "book/bookDetail";
 	}
+	
+	
 }
