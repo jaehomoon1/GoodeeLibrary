@@ -2,16 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.min.edu.model.UseLibraryDaoImpl">
 
+<!-- 대출중인 책인지 확인 -->
+<select id="checkDetailSeq" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+SELECT LOAN_SEQ 
+	FROM BOOK_DETAIL bd 
+	WHERE DETAIL_SEQ = (SELECT NVL(MAX(DETAIL_SEQ),0) 
+							FROM BOOK_DETAIL bd 
+							WHERE BOOK_SEQ = #{book_seq})
+</select>
+<!-- 위 쿼리의 결과가 있다면 대출정보를 가져오기 -->
+<select id="checkLoan" parameterType="java.lang.Integer" resultType="loanVo">
+SELECT *
+	FROM BOOK_LOAN bl 
+	WHERE LOAN_SEQ = #{seq}
+</select>
+
+<!-- 도서 대출 테이블에 추가 -->
 <insert id="insertLoan" parameterType="java.util.Map">
 INSERT INTO BOOK_LOAN
 	(LOAN_SEQ, LOAN_SDAY, LOAN_EDAY, LOAN_CHECK, MEMBER_SEQ)
 	VALUES(LOAN_SEQ.NEXTVAL, SYSDATE, SYSDATE+7, 'N', #{seq})
 </insert>
-
+<!-- 도서 상세정보 테이블에 추가 -->
 <insert id="insertBookDetail" parameterType="java.util.Map">
 INSERT INTO BOOK_DETAIL
 (DETAIL_SEQ, BOOK_SEQ, LOAN_SEQ, RESERVE_SEQ, DAMAGE_SEQ)
-VALUES(DETAIL_SEQ.NEXTVAL, #{bookSeq}, #{loanSeq}, '', '')
+VALUES(DETAIL_SEQ.NEXTVAL, #{book_seq}, (SELECT NVL(MAX(LOAN_SEQ), 1) FROM BOOK_LOAN), '', '')
 </insert>
 
+<!-- 도서 예약하기 -->
+<insert id="insertReservation" parameterType="java.util.Map">
+INSERT INTO BOOK_RESERVATION
+	(RESERVE_SEQ, RESERVE_DATE, RESERVE_PERIOD)
+	VALUES(RESERVE_SEQ.NEXTVAL, (SELECT LOAN_EDAY 
+						FROM BOOK_LOAN
+						WHERE LOAN_SEQ = #{seq}), 7)
+</insert>
+
+<update id="updateDetailR" parameterType="java.lang.Integer">
+UPDATE BOOK_DETAIL
+	SET RESERVE_SEQ = (SELECT MAX(RESERVE_SEQ) FROM BOOK_RESERVATION)
+	WHERE DETAIL_SEQ=(SELECT DETAIL_SEQ FROM BOOK_DETAIL WHERE LOAN_SEQ = #{seq})
+</update>
+
+<!-- 회원이 대출한 도서목록 보기 -->
+<select id="memberLoanList" parameterType="java.lang.String" resultType="loanVo">
+SELECT LOAN_SEQ, LOAN_SDAY, LOAN_EDAY, LOAN_CHECK, MEMBER_SEQ
+		FROM BOOK_LOAN
+		WHERE MEMBER_SEQ = (SELECT MEMBER_SEQ FROM BOOK_MEMBER
+							WHERE ID = #{id})
+</select>
 </mapper>

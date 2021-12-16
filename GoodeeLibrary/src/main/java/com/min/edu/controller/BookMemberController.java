@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.min.edu.model.IBookMemberDao;
 import com.min.edu.vo.BookMemberVo;
@@ -50,6 +51,13 @@ public class BookMemberController {
 	public String loginForm() {
 		logger.info("loginForm으로 이동");
 		return "loginForm";
+	}
+	
+	@GetMapping(value = "/logout.do")
+	public String logout(HttpSession session, SessionStatus sessionStatus) {
+		sessionStatus.setComplete();
+		logger.info("세션 Cleanup");
+		return null;
 	}
 	
 }
