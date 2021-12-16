@@ -78,17 +78,11 @@
 	
 	<!--메일보내기  -->
 	<!-- 서버의 정보를 입력해주면 됨 -->
-	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.naver.com"/>
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
 		<property name="port" value="587"/>
-		<property name="username" value="answogh123"/>
-		<!-- <property name="password" value="wjstkwogh12@!"/> -->
-		<!-- 만약에 비밀번호 특수문자가 있다면 CDATA -->
-		<property name="password">
-			<value>
-				<![CDATA[wjstkwogh12@!]]>
-			</value>
-		</property>
+		<property name="username" value="g00glelib@gmail.com"/>
+		<property name="password" value="rnrmf9999"/>
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.debug">true</prop> <!-- 메일보낼때 log -->
