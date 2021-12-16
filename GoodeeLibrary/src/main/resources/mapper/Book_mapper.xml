@@ -3,7 +3,7 @@
 <mapper namespace="com.min.edu.model.book.BookDaoImpl">
   
 <!-- 훼손 도서 목록 조회 -->
-<select id="damagedBookList" parameterType="java.lang.Integer" resultType="bookDto">
+<select id="damagedBookList" parameterType="java.lang.Integer" resultType="bookVo">
 	SELECT b.THUMBNAIL , b.TITLE , b.AUTHORS , b.PUBLISHER , b.CONTENTS 
 		FROM BOOK b JOIN BOOK_DETAIL bd
 		ON b.BOOK_SEQ = bd.BOOK_SEQ 
@@ -11,7 +11,7 @@
 </select>
 
 <!-- 미훼손 도서 목록 조회 -->
-<select id="undamagedBookList" parameterType="java.lang.Integer" resultType="bookDto">
+<select id="undamagedBookList" parameterType="java.lang.Integer" resultType="bookVo">
 	<![CDATA[
 	SELECT b.THUMBNAIL , b.TITLE , b.AUTHORS , b.PUBLISHER , b.CONTENTS 
 		FROM BOOK b JOIN BOOK_DETAIL bd
