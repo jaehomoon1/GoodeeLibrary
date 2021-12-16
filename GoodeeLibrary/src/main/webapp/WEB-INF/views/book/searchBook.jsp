@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!-- w3cschool css -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>책검색</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style type="text/css">
 .green_window {
 	display: inline-block;
@@ -53,10 +54,17 @@
         // 엔터키의 코드는 13입니다.
 	if(event.keyCode == 13){
 		kakaobook();  // 실행할 이벤트
+		}
 	}
-	
-}
-	
+	 function bookdetail(a){
+		 	var step;
+		 	
+		 	for (step = 1; step<11; step++){
+		 		if(a==step){
+		 			document.getElementById("bookdetail_form"+step).submit();
+		 		}
+		 	}	 	
+	 }   
 	
 </script>
 
@@ -73,7 +81,7 @@
 
 	
 	<table class="table">
-	   <c:forEach var="book" varStatus="" items="${kakaoBook.documents}">
+	   <c:forEach var="book" varStatus="status" items="${kakaoBook.documents}">
     <thead>
       <tr>
         <th>이미지</th>
@@ -87,7 +95,22 @@
       
    
       <tr>
-       <td><a href="./bookdetail.do?thumbnail=${book.thumbnail}&title=${book.title}"><img src="${book.thumbnail}"></a></td>
+      	
+       <td>
+       <form action="./bookdetail.do" method="post" id="bookdetail_form${status.count}">
+       <input type="hidden" value="${book.thumbnail}" name="thumbnail">
+       <input type="hidden" value="${book.title}" name="title">
+       <input type="hidden" value="${book.contents}" name="contents">
+       <input type="hidden" value="${book.datetime}" name="datetime">
+       <input type="hidden" value="${book.isbn}" name="isbn">
+       <input type="hidden" value="${book.price}" name="price">
+       <input type="hidden" value="${book.publisher}" name="publisher">
+       <input type="hidden" value="${book.authors}" name="authors">
+       </form>
+       		<a href="#" onclick="bookdetail(${status.count})">
+       		<img src="${book.thumbnail}">
+       		</a>
+       </td>
         <td>${book.title}</td>
         <td>${book.authors}</td>
         <td> ${book.contents}</td>
