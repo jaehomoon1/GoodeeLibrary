@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.bd.BdDaoImpl">
+  
+<!-- 훼손 도서 신고 -->
+<update id="damagedBook" parameterType="java.lang.Integer">
+	UPDATE BOOK_DETAIL bd
+		SET DAMAGE_SEQ = 4
+		WHERE DETAIL_SEQ = #{detail_seq}
+</update>
+
+</mapper>
