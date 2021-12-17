@@ -9,9 +9,9 @@
 </head>
 <body>
 
-
- 		<table class="table">
-
+	<form action="./insertBook.do" method="post">
+ 		
+ 	<table class="table">
     <thead>
       <tr>
         <th>이미지</th>
@@ -26,8 +26,6 @@
     </thead>
     
  	<tbody>
-      
-   
       <tr>
        <td><img src="${thumbnail}"></td>
         <td>${title}</td>
@@ -38,10 +36,14 @@
         <td>${isbn}</td>
         <td> ${price}</td>
       </tr>
-	
-	
-	
  	 </tbody>
 	</table>
+	<select name="book_count">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+	</select>
+	<input type="submit" value="등록하기">
+	</form>
 </body>
 </html>

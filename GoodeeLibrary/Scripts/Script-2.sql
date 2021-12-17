@@ -276,5 +276,30 @@ ALTER TABLE MEMBER_DECLARE
          MEMBER_SEQ
       )
 
-      
+CREATE SEQUENCE BOOK_SEQ;      
+
+/* 책 등록 */
+SELECT *
+	FROM BOOK b ;
+
+INSERT INTO BOOK
+(BOOK_SEQ, THUMBNAIL, TITLE, AUTHORS, PUBLISHER, DATETIME, ISBN, CONTENTS, PRICE, DELFLAG)
+VALUES(BOOK_SEQ, '', '', '', '', '', '', '', 0, '');
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
       
