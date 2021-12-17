@@ -20,4 +20,16 @@
 	]]>
 </select>
 
+<!-- 책 등록 -->
+<insert id="insertBook" parameterType="bookVo">
+	INSERT INTO BOOK
+		(BOOK_SEQ, THUMBNAIL, TITLE,
+		AUTHORS, PUBLISHER, DATETIME,
+		ISBN, CONTENTS, PRICE,
+		DELFLAG)
+	VALUES(BOOK_SEQ,#{thumbnail}, #{title},
+		#{authors}, #{publisher}, #{datetime},
+		#{isbn}, #{contents}, #{price},
+		'Y')
+</insert>
 </mapper>
