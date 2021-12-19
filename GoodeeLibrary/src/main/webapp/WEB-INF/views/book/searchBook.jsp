@@ -111,7 +111,7 @@
        		<img src="${book.thumbnail}">
        		</a>
        </td>
-        <td>${book.title}</td>
+        <td><a href="#" onclick="bookdetail(${status.count})">${book.title}</a></td>
         <td>${book.authors}</td>
         <td> ${book.contents}</td>
       </tr>

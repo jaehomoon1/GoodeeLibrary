@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.min.edu.book.Document;
 import com.min.edu.book.kakaoBook;
+import com.min.edu.model.book.IBookService;
+import com.min.edu.vo.BookVo;
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -28,6 +31,9 @@ import oracle.jdbc.proxy.annotation.Post;
 public class APIController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Autowired
+	private IBookService service;
 	
 	public static String kakao_book_rest_uri ="https://dapi.kakao.com/v3/search/book?target=title";
 	public static String kakao_rest_api_appkey = "07535f2f0d93aa2cb98883e2dbaeda11"; //본인거추가
@@ -76,8 +82,7 @@ public class APIController {
 	public String bookdetail(String thumbnail ,String title ,String contents,
 			String datetime, String isbn, String price,
 			String publisher, String authors ,Model model) {
-		
-		
+
 		
 		model.addAttribute("authors",authors);
 		model.addAttribute("publisher",publisher);
@@ -91,5 +96,45 @@ public class APIController {
 		return "book/bookDetail";
 	}
 	
+	
+	@PostMapping(value = "/insertBook.do")
+	public String insertbook(String thumbnail ,String title ,String contents,
+			String datetime, String isbn, String price,
+			String publisher, String authors) {
+
+		if(thumbnail == "") {
+			thumbnail = " ";
+		}
+		if(title == "") {
+			title = " ";
+		}
+		if(contents == "") {
+			contents = " ";
+		}
+		if(datetime == "") {
+			datetime = " ";
+		}
+		if(isbn == "") {
+			isbn = " ";
+		}
+		if(price == "") {
+			price = " ";
+		}
+		if(publisher == "") {
+			publisher = " ";
+		}
+		if(authors == "") {
+			authors = " ";
+		}
+		
+		datetime = datetime.substring(0,10);
+		BookVo vo = new BookVo(thumbnail,  title,  authors,  publisher,  datetime,  isbn,
+				 contents, Integer.parseInt(price));
+		System.out.println(vo.toString());
+		service.insertBook(vo);
+		
+		return "book/searchBook";
+		
+	}
 	
 }

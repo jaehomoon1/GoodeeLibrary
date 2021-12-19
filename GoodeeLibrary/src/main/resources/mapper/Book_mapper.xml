@@ -27,7 +27,7 @@
 		AUTHORS, PUBLISHER, DATETIME,
 		ISBN, CONTENTS, PRICE,
 		DELFLAG)
-	VALUES(BOOK_SEQ,#{thumbnail}, #{title},
+	VALUES(BOOK_SEQ.NEXTVAL,#{thumbnail}, #{title},
 		#{authors}, #{publisher}, #{datetime},
 		#{isbn}, #{contents}, #{price},
 		'Y')
