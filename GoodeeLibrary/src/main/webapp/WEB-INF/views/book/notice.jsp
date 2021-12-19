@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./css/damagedBook.css"></script>
+  <script type="text/javascript" src="./css/notice.css"></script>
   <link rel="shortcut icon" href="resources/imgs/favicon.ico" type="image/x-icon">
   <link rel="icon" href="resources/imgs/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
@@ -62,11 +64,11 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="./notice.do">공지사항</a></li>
+        <li class="active"><a href="./notice.do">공지사항</a></li>
         <li><a href="./color.do">도서검색</a></li>
         <li><a href="#">도서반납</a></li>
         <li><a href="#">도서요청</a></li>
-        <li class="active"><a href="./damagedBook.do">도서신고</a></li>
+        <li><a href="./damagedBook.do">도서신고</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="./loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
@@ -74,7 +76,6 @@
     </div>
   </div>
 </nav>
-  
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
@@ -83,51 +84,45 @@
       <p><a href="./damagedBookList.do">훼손 도서 목록</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1><b>신고 게시판</b></h1>
-      <div class="container">
-  <h2>Hover Rows</h2>
-  <p>The .table-hover class enables a hover state on table rows:</p>            
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-    </tbody>
-  </table>
+      <h1><b>공지사항</b></h1>
+	<%-- <c:set var="len" value="${fn:length(lists)}"></c:set>
+	TOTAL : ${len} --%>
+	  <table class="table table-striped table-hover" style="margin-top : 20px">
+	    <thead>
+	      <tr>
+	        <th>연번</th>
+	        <th>제목</th>
+	        <th>등록일</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+		    <c:forEach var="obj" items="${requestScope.lists}" varStatus="vs">
+			    <c:if test="${obj.delflag eq 'N'}">
+			      <tr>
+			        <!-- len : total / - : 빼기 / vs : varStatus -->
+			        <!-- index : 0부터 시작 / count : 1부터 시작 -->
+			        <td>${len - vs.index}</td>
+			        <td>${obj.id}</td>
+			        <td>
+			        	<!-- 
+			        	regdate가 String일 경우 처리하는 방법 
+			        	SQL문에서 TO_CHAR	
+			        	// fmt:parseDate는 설정값을 var라는 id에 넣으면
+			        	   fmt:formatDate에서 그 id값을 적용함, pattern은 default값에서 변경
+			        	-->
+			        	<fmt:parseDate var="id" value="${obj.regdate}" pattern="yyyy-MM-dd"/>
+			        	<fmt:formatDate value="${id}" pattern="yyyy/MM/dd"/> 
+			        </td>
+			      </tr>
+			    </c:if>
+		    </c:forEach>
+	    </tbody>
+	  </table>
+	  </div>
+	</div>
 </div>
-    </div>
-    <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
-      </div>
-    </div>
-  </div>
-</div>
-
 <footer class="container-fluid text-center">
-  <p>하단부</p>
+  <p>footer</p>
 </footer>
 
 </body>

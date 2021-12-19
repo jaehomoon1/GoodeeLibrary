@@ -42,7 +42,11 @@ public class BookController {
 		return "report/undamagedBookList";
 	}
 
-
+	@RequestMapping(value="/notice.do", method=RequestMethod.GET)
+	public String notice() {
+		logger.info("BookController 공지사항 실행");
+		return "book/notice";
+	}
 	
 	
 }
