@@ -16,6 +16,8 @@ Hello World \(❁´◡`❁)/\(❁´◡`❁)╰(*°▽°*)╯╰(*°▽°*)╯<br
 <a href="./undamagedBookList.do">미훼손 도서 목록</a>
 <a href="./damagedBookList.do">훼손 도서 목록 (관리자)</a>
 <a href="./mailform.do">메일 보내기</a>
+<a href="./color.do">색</a>
+
 
 
 </html>
