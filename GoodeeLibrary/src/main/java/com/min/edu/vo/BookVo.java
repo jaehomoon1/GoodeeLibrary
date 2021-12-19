@@ -86,5 +86,19 @@ public class BookVo {
 		this.delflag = delflag;
 	}
 
+	public BookVo(String thumbnail, String title, String authors, String publisher, String datetime, String isbn,
+			String contents, int price) {
+		super();
+		this.thumbnail = thumbnail;
+		this.title = title;
+		this.authors = authors;
+		this.publisher = publisher;
+		this.datetime = datetime;
+		this.isbn = isbn;
+		this.contents = contents;
+		this.price = price;
+	}
+
+	
 	
 }

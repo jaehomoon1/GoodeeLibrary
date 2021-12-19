@@ -8,5 +8,5 @@ public interface IBookService {
 
 	public List<BookVo> undamagedBookList(int seq);
 	public List<BookVo> damagedBookList(int seq);
-	
+	public int insertBook(BookVo vo);
 }
