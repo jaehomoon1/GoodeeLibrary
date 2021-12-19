@@ -11,4 +11,9 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@GetMapping(value = "/color.do")
+	public String color() {
+		return "book/color";
+	}
 }
