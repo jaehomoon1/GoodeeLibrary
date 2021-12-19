@@ -32,4 +32,10 @@ public class BookDaoImpl implements IBookDao {
 		return sqlSession.selectList(NS+"damagedBookList", seq);
 	}
 
+	@Override
+	public int insertBook(BookVo vo) {
+		logger.info("BookDaoImpl 책 등록 {}"+ vo);
+		return sqlSession.insert(NS+"insertBook",vo);
+	}
+
 }
