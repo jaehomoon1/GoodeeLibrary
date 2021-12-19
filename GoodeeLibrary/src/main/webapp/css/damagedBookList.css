@@ -3,7 +3,7 @@
       border-radius: 0;
     }
     
-    .row.content {height: 450px}
+    .row.content {height: 450px;}
     
     .sidenav {
       padding-top: 20px;
@@ -24,3 +24,68 @@
       }
       .row.content {height:auto;} 
     }
+    
+    .navbar {
+		background: #abecd6;
+		border: none;
+	}
+	#logo {
+		width: 100px;
+		height: 100px;
+		margin-top: 8px;
+		margin-left: -10px;
+		margin-bottom: -8px;
+	}
+	#myNavbar ul li a {
+		color: #5d4157;
+		text-align: center;	
+		height: 100px;
+		display: flex;
+		align-items: center;
+		font-weight: bolder;
+	}
+	#myNavbar ul li a:hover {
+		color: white;
+		background: #4dd0a3;
+	}
+	#myNavbar ul li span {
+		margin-top: -5px;
+		margin-right: 10px;
+	}
+	#nav1 .navbar-nav>.active>a{
+		color: white;
+		background: #49c69c;
+	}
+    
+    .navbar {
+		background: #abecd6;
+		border: none;
+	}
+	#logo {
+		width: 100px;
+		height: 100px;
+		margin-top: 8px;
+		margin-left: -10px;
+		margin-bottom: -8px;
+	}
+	#myNavbar ul li a {
+		color: #5d4157;
+		text-align: center;	
+		height: 100px;
+		display: flex;
+		align-items: center;
+		font-weight: bolder;
+	}
+	#myNavbar ul li a:hover {
+		color: white;
+		background: #4dd0a3;
+	}
+	#myNavbar ul li span {
+		margin-top: -5px;
+		margin-right: 10px;
+	}
+	#nav1 .navbar-nav>.active>a{
+		color: white;
+		background: #49c69c;
+	}
+    

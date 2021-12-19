@@ -3,17 +3,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>신고 게시판</title>
+  <title>지식을 긷는 우물, 책우물</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./css/undamagedBookList.css"></script>
+  <script type="text/javascript" src="./css/damagedBook.css"></script>
+  <link rel="shortcut icon" href="resources/imgs/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="resources/imgs/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
+<style>
+	.navbar {
+		background: #abecd6;
+		border: none;
+	}
+	#logo {
+		width: 100px;
+		height: 100px;
+		margin-top: 8px;
+		margin-left: -10px;
+		margin-bottom: -8px;
+	}
+	#myNavbar ul li a {
+		color: #5d4157;
+		text-align: center;	
+		height: 100px;
+		display: flex;
+		align-items: center;
+		font-weight: bolder;
+	}
+	#myNavbar ul li a:hover {
+		color: white;
+		background: #4dd0a3;
+	}
+	#myNavbar ul li span {
+		margin-top: -5px;
+		margin-right: 10px;
+	}
+	#nav1 .navbar-nav>.active>a{
+		color: white;
+		background: #49c69c;
+	}
+</style>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" id="nav1">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -21,17 +56,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">구디문고</a>
+      <div>
+      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./home.do'" style="cursor: pointer;">
+      </div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="./notice.do">공지사항</a></li>
+        <li><a href="./color.do">도서검색</a></li>
+        <li><a href="#">도서반납</a></li>
+        <li><a href="#">도서요청</a></li>
+        <li class="active"><a href="./damagedBook.do">도서신고</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="./loginForm.do"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
+        <li><a href="./loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
       </ul>
     </div>
   </div>
@@ -40,12 +78,12 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+      <p><a href="./undamagedBookList.do">이용 가능 도서</a></p>
+      <p><a href="./damagedBook.do">도서 훼손 신고</a></p>
+      <p><a href="./damagedBookList.do">훼손 도서 목록</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>신고 게시판</h1>
+      <h1><b>신고 게시판</b></h1>
       <div class="container">
   <h2>Hover Rows</h2>
   <p>The .table-hover class enables a hover state on table rows:</p>            
@@ -94,4 +132,3 @@
 
 </body>
 </html>
->

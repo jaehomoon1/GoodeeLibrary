@@ -4,12 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>홈페이지 디자인</title>
+  <title>지식을 긷는 우물, 책우물</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="resources/imgs/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="resources/imgs/favicon.ico" type="image/x-icon" sizes="16x16">
   <style>
   .jumbotron {
     color: #5d4157;
@@ -18,6 +20,7 @@
   .logo{
   	width: 150px;
   	height: 150px;
+  	margin-top: -30px;
   	margin-bottom: -30px;
   }
   h1{margin-bottom: -10px;}

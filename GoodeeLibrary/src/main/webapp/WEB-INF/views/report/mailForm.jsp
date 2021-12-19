@@ -4,15 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메일 작성 화면</title>
+<title>지식을 긷는 우물, 책우물</title>
 </head>
 <body>
-<!-- 
-	메일 작성하는 상황
-	1) text 글
-	2) HTML 작성
-	3) 첨부파일에 있는 글
- -->
+
 	<h2>메일 보내기</h2>
 	<div id="container">
 		<form action="./mailSender.do" method="post">
