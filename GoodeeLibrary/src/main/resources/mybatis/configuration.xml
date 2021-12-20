@@ -8,6 +8,7 @@
 	<typeAlias type="com.min.edu.vo.BookLoanVo" alias="loanVo"/>
 	<typeAlias type="com.min.edu.vo.BookDetailVo" alias="detailVo"/>
 	<typeAlias type="com.min.edu.vo.BookReservationVo" alias="reserveVo"/>
+	<typeAlias type="com.min.edu.vo.BookBoardVo" alias="BookBoardVo"/>
 </typeAliases>
 
 <mappers>
@@ -15,6 +16,7 @@
 	<mapper resource="mapper/BookDetail_mapper.xml"/>
 	<mapper resource="mapper/Book_mapper.xml"/>	
 	<mapper resource="mapper/UseLibrary_mapper.xml"/>
+	<mapper resource="mapper/BookBoard_mapper.xml"/>
 </mappers>
 
 </configuration>

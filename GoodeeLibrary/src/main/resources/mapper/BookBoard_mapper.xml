@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.board.BookBoardDaoImpl">
+
+   <!-- 게시판 ROOT글 입력 -->
+   <insert id="insertBoard" parameterType="BookBoardVo">
+      INSERT INTO BOOK_BOARD (BOARD_SEQ, BOARD_TYPE ,ID, 
+                        		TITLE, CONTENT, DELFLAG, REGDATE)
+         VALUES(BOARD_SEQ.NEXTVAL, #{board_type}, #{id}, 
+         		#{title}, #{content}, 'N', SYSDATE)
+   </insert>
+   
+   <!-- 게시판 글 수정 -->
+   <update id="updateBoard" parameterType="BookBoardVo">
+      UPDATE BOOK_BOARD SET CONTENT = #{content}
+        WHERE BOARD_SEQ=#{board_seq}
+   </update>
+   
+   <!-- 게시판 글 삭제 -->
+   <delete id="delflagBoard" parameterType="java.util.Map">
+      UPDATE BOOK_BOARD SET DELFLAG ='Y'
+      WHERE BOARD_SEQ IN
+      <foreach collection="seqs" item="seq" open="(" separator="," close=")">
+         #{board_seq}
+      </foreach>
+   </delete>
+   
+   <delete id="deleteBoard" parameterType="java.util.Map">
+      DELETE FROM BOOK_BOARD a 
+      WHERE BOARD_SEQ IN
+      <foreach collection="seqs" item="seq" open="(" separator="," close=")">
+         #{board_seq}
+      </foreach>
+   </delete>
+   
+   <!-- 게시판 글 상세조회 -->
+   <select id="selectOneBoard" parameterType="java.lang.Integer" resultType="BookBoardVo">
+      SELECT BOARD_SEQ, BOARD_TYPE ,ID, TITLE, CONTENT, DELFLAG, REGDATE  
+         FROM BOOK_BOARD WHERE BOARD_SEQ=#{board_seq}
+   </select>
+   
+   <!-- 게시판 글 조회 -->
+   <select id="selectAllBoard" resultType="BookBoardVo">
+      SELECT BOARD_SEQ, BOARD_TYPE ,ID, TITLE, CONTENT, DELFLAG, REGDATE 
+         FROM BOOK_BOARD 
+   </select>
+
+</mapper>
