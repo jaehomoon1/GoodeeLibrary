@@ -18,10 +18,10 @@
     background: #abecd6;
   }
   .logo{
-  	width: 150px;
-  	height: 150px;
-  	margin-top: -30px;
-  	margin-bottom: -30px;
+     width: 150px;
+     height: 150px;
+     margin-top: -30px;
+     margin-bottom: -30px;
   }
   h1{margin-bottom: -10px;}
   h3{margin-bottom: 30px;}
