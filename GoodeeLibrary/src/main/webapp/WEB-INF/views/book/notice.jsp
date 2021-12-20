@@ -71,7 +71,13 @@
         <li><a href="./damagedBook.do">도서신고</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="./loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
+       	 <c:if test="${mvo == null}">
+		      <li><a href="./loginForm.do"><span class="glyphicon glyphicon-user"></span>로그인</a></li>
+	      </c:if>
+	      <c:if test="${mvo != null}">
+	          <li><a href="#">${mvo.id} 님</a></li>
+		      <li><a href="./logout.do"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
+	      </c:if>
       </ul>
     </div>
   </div>
