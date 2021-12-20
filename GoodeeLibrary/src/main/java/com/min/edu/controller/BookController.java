@@ -18,9 +18,6 @@ public class BookController {
 	@Autowired
 	private IBookService bookService;
 	
-	@Autowired
-	private IBdService bdService;
-	
 	@RequestMapping(value="/damagedBook.do", method= {RequestMethod.POST, RequestMethod.GET})
 	public String damagedBook() {
 		logger.info("BookController 훼손 도서 신고 실행");
@@ -34,19 +31,11 @@ public class BookController {
 //		bookService
 		return "report/damagedBookList";
 	}
-	
-	@RequestMapping(value="/undamagedBookList.do", method= {RequestMethod.POST, RequestMethod.GET})
-	public String undamagedBookList() {
-		logger.info("BookController 미훼손 도서 목록 실행");
-//		bookService
-		return "report/undamagedBookList";
-	}
 
 	@RequestMapping(value="/notice.do", method=RequestMethod.GET)
 	public String notice() {
 		logger.info("BookController 공지사항 실행");
 		return "book/notice";
 	}
-	
 	
 }

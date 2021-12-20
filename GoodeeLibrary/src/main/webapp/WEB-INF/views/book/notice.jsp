@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +69,7 @@
         <li><a href="./search_book.do">도서검색</a></li>
         <li><a href="#">도서반납</a></li>
         <li><a href="#">도서요청</a></li>
-        <li><a href="./damagedBook.do">도서신고</a></li>
+        <li><a href="./boardList.do">도서신고</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
        	 <c:if test="${mvo == null}">
@@ -85,50 +86,16 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="./undamagedBookList.do">이용 가능 도서</a></p>
       <p><a href="./damagedBook.do">도서 훼손 신고</a></p>
       <p><a href="./damagedBookList.do">훼손 도서 목록</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
       <h1><b>공지사항</b></h1>
-	<%-- <c:set var="len" value="${fn:length(lists)}"></c:set>
-	TOTAL : ${len} --%>
-	  <table class="table table-striped table-hover" style="margin-top : 20px">
-	    <thead>
-	      <tr>
-	        <th>연번</th>
-	        <th>제목</th>
-	        <th>등록일</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-		    <c:forEach var="obj" items="${requestScope.lists}" varStatus="vs">
-			    <c:if test="${obj.delflag eq 'N'}">
-			      <tr>
-			        <!-- len : total / - : 빼기 / vs : varStatus -->
-			        <!-- index : 0부터 시작 / count : 1부터 시작 -->
-			        <td>${len - vs.index}</td>
-			        <td>${obj.id}</td>
-			        <td>
-			        	<!-- 
-			        	regdate가 String일 경우 처리하는 방법 
-			        	SQL문에서 TO_CHAR	
-			        	// fmt:parseDate는 설정값을 var라는 id에 넣으면
-			        	   fmt:formatDate에서 그 id값을 적용함, pattern은 default값에서 변경
-			        	-->
-			        	<fmt:parseDate var="id" value="${obj.regdate}" pattern="yyyy-MM-dd"/>
-			        	<fmt:formatDate value="${id}" pattern="yyyy/MM/dd"/> 
-			        </td>
-			      </tr>
-			    </c:if>
-		    </c:forEach>
-	    </tbody>
-	  </table>
-	  </div>
+	</div>
 	</div>
 </div>
 <footer class="container-fluid text-center">
-  <p>footer</p>
+  <p>곧 삭제될 페이지입니다.</p>
 </footer>
 
 </body>

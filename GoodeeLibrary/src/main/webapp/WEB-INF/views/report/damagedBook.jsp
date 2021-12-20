@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,8 +69,14 @@
         <li><a href="#">도서요청</a></li>
         <li class="active"><a href="./damagedBook.do">도서신고</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="./loginForm.do"><span class="glyphicon glyphicon-log-in"></span>로그인</a></li>
+	  <ul class="nav navbar-nav navbar-right">
+       	 <c:if test="${mvo == null}">
+		      <li><a href="./loginForm.do"><span class="glyphicon glyphicon-user"></span>로그인</a></li>
+	      </c:if>
+	      <c:if test="${mvo != null}">
+	          <li><a href="#">${mvo.id} 님</a></li>
+		      <li><a href="./logout.do"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
+	      </c:if>
       </ul>
     </div>
   </div>
@@ -78,42 +85,40 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="./undamagedBookList.do">이용 가능 도서</a></p>
       <p><a href="./damagedBook.do">도서 훼손 신고</a></p>
       <p><a href="./damagedBookList.do">훼손 도서 목록</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
       <h1><b>신고 게시판</b></h1>
       <div class="container">
-  <h2>Hover Rows</h2>
-  <p>The .table-hover class enables a hover state on table rows:</p>            
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+		  <h2>도서 훼손 신고</h2>         
+		  <table class="table table-hover">
+		    <thead>
+		      <tr>
+		        <th>Firstname</th>
+		        <th>Lastname</th>
+		        <th>Email</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>John</td>
+		        <td>Doe</td>
+		        <td>john@example.com</td>
+		      </tr>
+		      <tr>
+		        <td>Mary</td>
+		        <td>Moe</td>
+		        <td>mary@example.com</td>
+		      </tr>
+		      <tr>
+		        <td>July</td>
+		        <td>Dooley</td>
+		        <td>july@example.com</td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
