@@ -5,10 +5,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!-- w3cschool css -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- w3cschool css -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="resources/imgs/favicon.ico"
+	type="image/x-icon">
+<link rel="icon" href="resources/imgs/favicon.ico" type="image/x-icon"
+	sizes="16x16">
+<style>
+.jumbotron {
+	color: #5d4157;
+	background: #abecd6;
+}
+
+.logo {
+	width: 150px;
+	height: 150px;
+	margin-top: -30px;
+	margin-bottom: -30px;
+}
+
+h1 {
+	margin-bottom: -10px;
+}
+
+h3 {
+	margin-bottom: 30px;
+}
+</style>
 <title>책검색</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style type="text/css">
 .green_window {
 	display: inline-block;
@@ -44,10 +76,13 @@
 </style>
 
 <script type="text/javascript">
+	var id = document.getElementById("book_name");
+	
 	function kakaobook(){
+		
 		var book = document.getElementById("book_name").value;
 		location.href="./kakao_book.do?searchWord="+book;
-		document.getElementById("book_name").focus;
+		id.focus();
 	}
 	
 	function Enter_Check(){
@@ -70,55 +105,67 @@
 
 </head>
 <body>
+	<div class="jumbotron text-center">
+		<img class="logo" alt="logo" src="./imgs/logo.png"
+			onclick="location.href='./home.do'" style="cursor: pointer;">
+		<h1>
+			<b>책 우물</b>
+		</h1>
+		<h3>
+			<b>지식을 긷는 우물</b>
+		</h3>
+		<div class="form-inline">
+			<div class="input-group">
+				<input type="text" id="book_name" name="book_name" class="form-control" size="50"
+					placeholder="검색하실 도서명을 입력해주세요" onkeydown="Enter_Check();" value="${book_name}">
+				<div class="input-group-btn">
+					<button id="search" class="btn btn-success" onclick=kakaobook()>도서 검색</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<div class="container">
+	<div class="container">
+		<table class="table">
+			<c:forEach var="book" varStatus="status"
+				items="${kakaoBook.documents}">
+				<thead>
+					<tr>
+						<th>이미지</th>
+						<th>제목</th>
+						<th>저자</th>
+						<th>내용</th>
+					</tr>
+				</thead>
+
+				<tbody>
 
 
-	<span class='green_window'> 
-	<input type="text" id="book_name" name="book_name" class='input_text' placeholder="책 제목을 입력해주세요." onkeydown="Enter_Check();" value="${book_name}">
-	</span>
-	<button id="search" class='sch_smit' onclick=kakaobook()>검색</button>
+					<tr>
 
-	
-	<table class="table">
-	   <c:forEach var="book" varStatus="status" items="${kakaoBook.documents}">
-    <thead>
-      <tr>
-        <th>이미지</th>
-        <th>제목</th>
-        <th>저자</th>
-        <th>내용</th>
-      </tr>
-    </thead>
-    
- 	<tbody>
-      
-   
-      <tr>
-      	
-       <td>
-       <form action="./bookdetail.do" method="post" id="bookdetail_form${status.count}">
-       <input type="hidden" value="${book.thumbnail}" name="thumbnail">
-       <input type="hidden" value="${book.title}" name="title">
-       <input type="hidden" value="${book.contents}" name="contents">
-       <input type="hidden" value="${book.datetime}" name="datetime">
-       <input type="hidden" value="${book.isbn}" name="isbn">
-       <input type="hidden" value="${book.price}" name="price">
-       <input type="hidden" value="${book.publisher}" name="publisher">
-       <input type="hidden" value="${book.authors}" name="authors">
-       </form>
-       		<a href="#" onclick="bookdetail(${status.count})">
-       		<img src="${book.thumbnail}">
-       		</a>
-       </td>
-        <td><a href="#" onclick="bookdetail(${status.count})">${book.title}</a></td>
-        <td>${book.authors}</td>
-        <td> ${book.contents}</td>
-      </tr>
-	</c:forEach>
- 	 </tbody>
-	</table>
-	
-</div>
+						<td>
+							<form action="./bookdetail.do" method="post"
+								id="bookdetail_form${status.count}">
+								<input type="hidden" value="${book.thumbnail}" name="thumbnail">
+								<input type="hidden" value="${book.title}" name="title">
+								<input type="hidden" value="${book.contents}" name="contents">
+								<input type="hidden" value="${book.datetime}" name="datetime">
+								<input type="hidden" value="${book.isbn}" name="isbn"> <input
+									type="hidden" value="${book.price}" name="price"> <input
+									type="hidden" value="${book.publisher}" name="publisher">
+								<input type="hidden" value="${book.authors}" name="authors">
+							</form> <a href="#" onclick="bookdetail(${status.count})"> <img
+								src="${book.thumbnail}">
+						</a>
+						</td>
+						<td><a href="#" onclick="bookdetail(${status.count})">${book.title}</a></td>
+						<td>${book.authors}</td>
+						<td>${book.contents}</td>
+					</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+
+	</div>
 </body>
 </html>

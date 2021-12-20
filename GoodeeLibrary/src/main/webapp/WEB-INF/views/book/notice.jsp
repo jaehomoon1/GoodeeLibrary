@@ -65,7 +65,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="./notice.do">공지사항</a></li>
-        <li><a href="./color.do">도서검색</a></li>
+        <li><a href="./search_book.do">도서검색</a></li>
         <li><a href="#">도서반납</a></li>
         <li><a href="#">도서요청</a></li>
         <li><a href="./damagedBook.do">도서신고</a></li>
