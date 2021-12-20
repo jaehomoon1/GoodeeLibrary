@@ -43,7 +43,7 @@ public class BookMemberController {
 		}
 		session.setAttribute("mvo", result);
 		logger.info("session에 들어있는 값 : {}", session.getAttribute("mvo"));
-		return "member/bookMain";
+		return "book/notice";
 	}
 	
 	@GetMapping(value = "/loginForm.do")
@@ -56,7 +56,7 @@ public class BookMemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		logger.info("세션 Cleanup");
-		return "member/bookMain";
+		return "book/notice";
 	}
 	
 	@GetMapping(value = "/signupForm.do")

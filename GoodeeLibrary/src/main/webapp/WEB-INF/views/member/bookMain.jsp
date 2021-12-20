@@ -13,9 +13,9 @@
 </head>
 <body>
 <%@ include file="./login.jsp" %>
-<a href="#">도서가 대출중인지 확인</a><br>
-<a href="#">도서 대출하기</a><br>
-<a href="#">도서 예약하기</a><br>
-<a href="#">회원이 대출한 도서목록</a><br>
+<a href="./checkLoan.do?seq=1">도서가 대출중인지 확인</a><br>
+<a href="./insertLoan.do?memSeq=${mvo.member_seq}&bookSeq=1">도서 대출하기</a><br>
+<a href="./insertReservation.do?loanSeq=41">도서 예약하기</a><br>
+<a href="./memberLoanList.do?id=${mvo.id}">회원이 대출한 도서목록</a><br>
 </body>
 </html>

@@ -4,7 +4,7 @@
 
 <!-- 대출중인 책인지 확인 -->
 <select id="checkDetailSeq" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-SELECT LOAN_SEQ 
+SELECT NVL(MAX(LOAN_SEQ),0)
 	FROM BOOK_DETAIL bd 
 	WHERE DETAIL_SEQ = (SELECT NVL(MAX(DETAIL_SEQ),0) 
 							FROM BOOK_DETAIL bd 
