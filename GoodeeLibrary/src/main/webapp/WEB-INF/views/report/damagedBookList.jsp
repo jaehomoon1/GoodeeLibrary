@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,13 +59,12 @@
         <span class="icon-bar"></span>                        
       </button>
       <div>
-      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./home.do'" style="cursor: pointer;">
+      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./search_book.do'" style="cursor: pointer;">
       </div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="./notice.do">공지사항</a></li>
-        <li><a href="./color.do">도서검색</a></li>
+        <li><a href="./search_book.do">도서검색</a></li>
         <li><a href="#">도서반납</a></li>
         <li><a href="#">도서요청</a></li>
         <li class="active"><a href="./boardList.do">도서신고</a></li>
@@ -102,12 +102,15 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		      <tr>
-		        <td>BOOK_SEQ</td>
-		        <td>TITLE</td>
-		        <td>AUTHORS</td>
-		        <td>PUBLISHER</td>
-		      </tr>
+		    <c:set var="len" value="${fn:length(blist)}"></c:set>
+			    <c:forEach var="blist" items="${requestScope.blist}" varStatus="vs"> 
+			      <tr>
+			        <td>${len - vs.index}</td>
+			        <td>${blist.title}</td>
+			        <td>${blist.authors}</td>
+			        <td>${blist.publisher}</td>
+			      </tr>
+				</c:forEach>
 		    </tbody>
 		  </table>
 		</div>
@@ -116,7 +119,7 @@
 </div>
 
 <footer class="container-fluid text-center">
-  <p>하단부</p>
+  <p></p>
 </footer>
 
 </body>

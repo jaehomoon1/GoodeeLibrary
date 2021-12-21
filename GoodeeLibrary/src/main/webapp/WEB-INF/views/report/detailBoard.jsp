@@ -60,12 +60,11 @@
         <span class="icon-bar"></span>                        
       </button>
       <div>
-      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./home.do'" style="cursor: pointer;">
+      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./search_book.do'" style="cursor: pointer;">
       </div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="./notice.do">공지사항</a></li>
         <li><a href="./search_book.do">도서검색</a></li>
         <li><a href="#">도서반납</a></li>
         <li><a href="#">도서요청</a></li>
@@ -105,7 +104,7 @@
 					<tr>
 						<th>내용</th>
 						<td>
-							<textarea style="resize: none" rows="15" cols="80" placeholder="null 값 들어와서 고치는 중...">${avo.content}</textarea>
+							<textarea style="resize: none" rows="15" cols="80">${avo.content}</textarea>
 						</td>
 					</tr>
 					<tr>

@@ -42,7 +42,28 @@ SELECT bm.ID, bm.NAME, bm.NICKNAME, bm.PHONE FROM BOOK_MEMBER bm
 	) a 
 	WHERE a.r = 2;*/
 	
+SELECT *
+	FROM (
+		SELECT ROWNUM RNUM, bb.*
+			FROM (
+				SELECT *
+					FROM BOOK_BOARD bb 
+					ORDER BY REGDATE DESC
+				) bb
+			)
+		WHERE RNUM BETWEEN 2 AND 5;
 
-
-
-
+	
+SELECT NVL(COUNT(*),0)
+	FROM BOOK_BOARD
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            

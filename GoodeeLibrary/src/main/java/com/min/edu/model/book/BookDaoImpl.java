@@ -21,15 +21,15 @@ public class BookDaoImpl implements IBookDao {
 	private final String NS = "com.min.edu.model.book.BookDaoImpl.";
 	
 	@Override
-	public List<BookVo> undamagedBookList(int seq) {
+	public List<BookVo> undamagedBookList() {
 		logger.info("BookDaoImpl 미훼손 도서 목록 조회");
-		return sqlSession.selectList(NS+"undamagedBookList", seq);
+		return sqlSession.selectList(NS+"undamagedBookList");
 	}
 
 	@Override
-	public List<BookVo> damagedBookList(int seq) {
+	public List<BookVo> damagedBookList() {
 		logger.info("BookDaoImpl 훼손 도서 목록 조회");
-		return sqlSession.selectList(NS+"damagedBookList", seq);
+		return sqlSession.selectList(NS+"damagedBookList");
 	}
 
 	@Override

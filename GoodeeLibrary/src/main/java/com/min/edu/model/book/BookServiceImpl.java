@@ -18,15 +18,15 @@ public class BookServiceImpl implements IBookService {
 	private IBookDao dao;
 	
 	@Override
-	public List<BookVo> undamagedBookList(int seq) {
+	public List<BookVo> undamagedBookList() {
 		logger.info("BookServiceImpl 미훼손 목록 조회");
-		return dao.undamagedBookList(seq);
+		return dao.undamagedBookList();
 	}
 
 	@Override
-	public List<BookVo> damagedBookList(int seq) {
+	public List<BookVo> damagedBookList() {
 		logger.info("BookServiceImpl 훼손 목록 조회");
-		return dao.undamagedBookList(seq);
+		return dao.undamagedBookList();
 	}
 
 	@Override

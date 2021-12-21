@@ -13,6 +13,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="./css/notice.css"></script>
+  <script type="text/javascript" src="./js/paging.js"></script>
   <link rel="shortcut icon" href="resources/imgs/favicon.ico" type="image/x-icon">
   <link rel="icon" href="resources/imgs/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
@@ -60,12 +61,11 @@
         <span class="icon-bar"></span>                        
       </button>
       <div>
-      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./home.do'" style="cursor: pointer;">
+      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./search_book.do'" style="cursor: pointer;">
       </div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="./notice.do">공지사항</a></li>
         <li><a href="./search_book.do">도서검색</a></li>
         <li><a href="#">도서반납</a></li>
         <li><a href="#">도서요청</a></li>
@@ -93,6 +93,16 @@
       <h1><b>신고게시판</b></h1><br>
 	<c:set var="len" value="${fn:length(lists)}"></c:set>
 	TOTAL : ${len} 
+<!-- 	<div id="select">
+		<span>
+			<select class="btn btn-default" id="listCount" name="listCount" onchange="listCnt()">
+				<option>게시글 수 변경</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="15">15</option>
+			</select>
+		</span>
+	</div> -->
 	  <table class="table table-striped table-hover" style="margin-top : 20px">
 	    <thead>
 	      <tr>
@@ -107,7 +117,7 @@
 			    <c:if test="${lists.delflag eq 'N'}">
 			      <tr>
 			        <td>${len - vs.index}</td>
-			        <td><a href="./detailBoard.do">${lists.title}</a></td>
+			        <td><a href="./detailBoard.do?board_seq=${lists.board_seq}">${lists.title}</a></td>
 			        <td>${lists.id}</td>
 			        <td>
 			        	<fmt:parseDate var="date" value="${lists.regdate}" pattern="yyyy-MM-dd"/>
@@ -121,8 +131,33 @@
 	  </div>
 	</div>
 </div>
+
 <footer class="container-fluid text-center">
-  <p></p>
+  
+<%--   	<form action="./paging.do" method="post" id="frmPaging">
+		<!-- paging 처리 관련 값 >> PagingController getParameter -->
+		<input type="hidden" name="index" id="index" value="${paging.index}">
+		<input type="hidden" name="pageStartNum" id="pageStartNum" value="${paging.pageStartNum}">
+		<input type="hidden" name="listCnt" id="listCnt" value="${paging.listCnt}">
+		
+		<div class="center">
+			<ul class="pagination">
+			
+				<!-- <li><a href="#" onclick="pagePre(${paging.pageCnt+1}.${paging.pageCnt})">&laquo;</a></li> -->
+				<li><a href="#" onclick="pageFirst()">&laquo;</a></li>
+				<li><a href="#" onclick="pagePre(${paging.pageStartNum},${paging.pageCnt})">&lsaquo;</a></li>
+
+				<!-- 페이지 번호 -->
+				<c:forEach var="i" begin="${paging.pageStartNum}" end="${paging.pageLastNum}" step="1">	
+					<li><a onclick="pageIndex(${i})">${i}</a></li>
+				</c:forEach>
+				
+				<li><a href="#" onclick="pageNext(${paging.pageStartNum},${paging.total},${paging.listCnt},${paging.pageCnt})">&rsaquo;</a></li>
+				<li><a href="#" onclick="pageLast(${paging.pageStartNum},${paging.total},${paging.listCnt},${paging.pageCnt})">&raquo;</a></li>
+			</ul>
+		</div>
+	</form> --%>
+  
 </footer>
 
 </body>

@@ -12,7 +12,7 @@
 	<div id="container">
 		<form action="./mailSender.do" method="post">
 			<div align="center">
-				<input type="text" name="tomail" placeholder="상대방 메일">
+				<input type="text" name="tomail" placeholder="수신자 이메일 주소">
 			</div>
 			<div align="center">
 				<input type="text" name="title" placeholder="메일 제목">

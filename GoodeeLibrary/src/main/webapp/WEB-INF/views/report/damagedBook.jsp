@@ -58,13 +58,12 @@
         <span class="icon-bar"></span>                        
       </button>
       <div>
-      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./home.do'" style="cursor: pointer;">
+      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./search_book.do'" style="cursor: pointer;">
       </div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="./notice.do">공지사항</a></li>
-        <li><a href="./color.do">도서검색</a></li>
+        <li><a href="./search_book.do">도서검색</a></li>
         <li><a href="#">도서반납</a></li>
         <li><a href="#">도서요청</a></li>
         <li class="active"><a href="./damagedBook.do">도서신고</a></li>
