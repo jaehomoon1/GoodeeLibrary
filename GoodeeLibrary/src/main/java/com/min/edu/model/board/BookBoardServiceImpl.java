@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.min.edu.model.board.IBookBoardDao;
 import com.min.edu.vo.BookBoardVo;
+import com.min.edu.vo.PagingVo;
 
 @Service
 public class BookBoardServiceImpl implements IBookBoardService {
@@ -41,9 +42,9 @@ public class BookBoardServiceImpl implements IBookBoardService {
 	}
 
 	@Override
-	public BookBoardVo selectOneBoard(int seq) {
+	public BookBoardVo selectOneBoard(int board_seq) {
 		
-		return answerboardDao.selectOneBoard(seq);
+		return answerboardDao.selectOneBoard(board_seq);
 	}
 
 	@Override
@@ -52,4 +53,17 @@ public class BookBoardServiceImpl implements IBookBoardService {
 		return answerboardDao.selectAllBoard();
 	}
 
+	
+//	페이징 처리
+	
+	@Override
+	public List<BookBoardVo> selectPaging(PagingVo paging) {
+		return answerboardDao.selectPaging(paging);
+	}
+
+	@Override
+	public int selectTotalPaging() {
+		return answerboardDao.selectTotalPaging();
+	}
+	
 }

@@ -9,6 +9,7 @@
 	<typeAlias type="com.min.edu.vo.BookDetailVo" alias="detailVo"/>
 	<typeAlias type="com.min.edu.vo.BookReservationVo" alias="reserveVo"/>
 	<typeAlias type="com.min.edu.vo.BookBoardVo" alias="BookBoardVo"/>
+	<typeAlias type="com.min.edu.vo.PagingVo" alias="PagingVo"/>
 </typeAliases>
 
 <mappers>

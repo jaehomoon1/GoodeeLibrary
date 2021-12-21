@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.min.edu.model.board.IBookBoardService;
 import com.min.edu.vo.BookBoardVo;
+import com.min.edu.vo.PagingVo;
 
 @Controller
 public class BoardController {
@@ -43,15 +45,36 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/detailBoard.do", method=RequestMethod.GET )
-	public ModelAndView detailBoard(@RequestParam(required=false, defaultValue="0") int seq) {
-		logger.info("BoardController 상세페이지 detailBoard : {}", seq);
+	public ModelAndView detailBoard(int board_seq) { //httpservletrequest req
+//		int board_seq = Integer.parseInt(req.getParameter("board_seq"));
+		logger.info("BoardController 상세페이지 detailBoard : {}", board_seq);
 		ModelAndView mav = new ModelAndView();
-		BookBoardVo vo = service.selectOneBoard(seq);
+		BookBoardVo vo = service.selectOneBoard(board_seq);
 		mav.setViewName("report/detailBoard");
 		mav.addObject("avo", vo);
 		return mav;
+		
 	}
 
+	
+	/*
+	 * // 페이징 처리
+	 * 
+	 * @RequestMapping(value ="/paging.do" , method =
+	 * {RequestMethod.POST,RequestMethod.GET}) public String paging(Model
+	 * model,HttpServletRequest request) { PagingVo paging = new PagingVo(
+	 * request.getParameter("index"), request.getParameter("pageStartNum"),
+	 * request.getParameter("listCnt") );
+	 * 
+	 * paging.setTotal(service.selectTotalPaging()); List<BookBoardVo> lists =
+	 * service.selectPaging(paging);
+	 * 
+	 * model.addAttribute("lists",lists); model.addAttribute("paging", paging);
+	 * logger.info("페이징 DTO 값 :{}",paging.toString()); return
+	 * "redirect:/report/boardList.do"; }
+	 */
+   
+	
 //	@PostMapping("/multiDel.do")
 //	public String multiDel(
 ////			String chk
@@ -96,17 +119,6 @@ public class BoardController {
 //		}
 //	}
 //	
-//	@RequestMapping(value="/detailBoard.do", method=RequestMethod.GET )
-//	public ModelAndView detailBoard(int seq) {
-//		logger.info("BoardController 상세페이지 detailBoard : {}", seq); // {}를 해줘야 seq 값이 안에 들어감
-//		ModelAndView mav = new ModelAndView();
-//		// 값과 이등 jsp를 같이 mav 객체에 담아준다
-//		AnswerboardVo vo = answerboardServiceImpl.selectOneBoard(seq);
-//		mav.setViewName("detailBoard");
-//		mav.addObject("avo", vo);
-//		return mav;
-//	}
-	
 //	@RequestMapping(value="/modifyBoard.do", method=RequestMethod.GET )
 //	public String modifyBoard(Answerboard_VO vo) {
 //		logger.info("BoardController modifyBoard : {}", vo); 

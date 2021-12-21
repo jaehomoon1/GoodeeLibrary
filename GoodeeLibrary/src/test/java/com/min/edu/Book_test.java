@@ -36,7 +36,7 @@ public class Book_test {
 //		System.out.println(dao.damagedBookList(4));
 		
 		//미훼손 도서 목록 조회
-		assertNotNull(dao.undamagedBookList(1));
+//		assertNotNull(dao.undamagedBookList());
 //		System.out.println(dao.undamagedBookList(1));
 		
 	}

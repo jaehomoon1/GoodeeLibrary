@@ -43,6 +43,36 @@
    <select id="selectAllBoard" resultType="BookBoardVo">
       SELECT BOARD_SEQ, BOARD_TYPE ,ID, TITLE, CONTENT, DELFLAG, REGDATE 
          FROM BOOK_BOARD 
+         ORDER BY BOARD_SEQ DESC
    </select>
+   
+   
+   <!-- 페이징 처리 -->
+	
+   <select id="selectPaging" parameterType="PagingVo" resultType="BookBoardVo">
+      SELECT *
+		FROM (
+			SELECT bb.*, ROW_NUMBER () OVER( ORDER BY REGDATE DESC) RNUM
+				FROM BOOK_BOARD bb
+			)
+		WHERE RNUM BETWEEN #{start} AND #{last}
+   </select>
+     <!--  SELECT *
+	FROM (
+		SELECT ROWNUM RNUM, bb.*
+			FROM (
+				SELECT *
+					FROM BOOK_BOARD bb 
+					ORDER BY REGDATE DESC
+				) bb
+			)
+		WHERE RNUM BETWEEN #{start} AND #{last} -->
+   
+   
+   <select id="selectTotalPaging" resultType="java.lang.Integer">
+       SELECT NVL(COUNT(*),0)
+            FROM BOOK_BOARD
+   </select>
+
 
 </mapper>

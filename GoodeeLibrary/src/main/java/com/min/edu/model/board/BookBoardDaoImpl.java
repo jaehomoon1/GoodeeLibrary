@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.min.edu.vo.BookBoardVo;
+import com.min.edu.vo.PagingVo;
 
 @Repository
 public class BookBoardDaoImpl implements IBookBoardDao {
@@ -47,9 +48,9 @@ public class BookBoardDaoImpl implements IBookBoardDao {
 	}
 
 	@Override
-	public BookBoardVo selectOneBoard(int seq) {
+	public BookBoardVo selectOneBoard(int board_seq) {
 		logger.info("상세 조회");
-		return sqlSession.selectOne(NS+"selectOneBoard", seq);
+		return sqlSession.selectOne(NS+"selectOneBoard", board_seq);
 	}
 
 	@Override
@@ -58,4 +59,17 @@ public class BookBoardDaoImpl implements IBookBoardDao {
 		return sqlSession.selectList(NS+"selectAllBoard");
 	}
 
+//	페이징 처리
+	
+	@Override
+	public List<BookBoardVo> selectPaging(PagingVo paging) {
+		logger.info("페이지 단일 조회");
+		return sqlSession.selectList(NS+"selectPaging",paging);
+	}
+
+	@Override
+	public int selectTotalPaging() {
+		logger.info("페이지 전체 조회");
+		return sqlSession.selectOne(NS+"selectTotalPaging");
+	}
 }
