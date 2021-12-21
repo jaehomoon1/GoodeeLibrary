@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- w3cschool css -->
+<link rel="stylesheet" href="./css/Book.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -49,9 +57,16 @@
 		<option value="1">1</option>
 		<option value="2">2</option>
 		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
 	</select>
-	<input type="submit" value="등록하기">
-	<a href="javascript:history.back()" class="btn btn-primary">취소</a>
+	<input type="submit" value="등록하기" class="btn btn-info">
+	<a href="javascript:history.back()" class="btn btn-info">취소</a>
 	</form>
 </body>
 </html>

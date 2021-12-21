@@ -92,7 +92,7 @@ public class APIController {
 	@PostMapping(value = "/insertBook.do")
 	public String insertbook(String thumbnail ,String title ,String contents,
 			String datetime, String isbn, String price,
-			String publisher, String authors) {
+			String publisher, String authors , int book_count) {
 
 		if(thumbnail == "") {
 			thumbnail = " ";
@@ -119,11 +119,15 @@ public class APIController {
 			authors = " ";
 		}
 		
+		
 		datetime = datetime.substring(0,10);
 		BookVo vo = new BookVo(thumbnail,  title,  authors,  publisher,  datetime,  isbn,
 				 contents, Integer.parseInt(price));
 		System.out.println(vo.toString());
-		service.insertBook(vo);
+		for (int i = 0; i < book_count; i++) {
+			service.insertBook(vo);		
+		}
+	
 		
 		return "book/searchBook";
 		
