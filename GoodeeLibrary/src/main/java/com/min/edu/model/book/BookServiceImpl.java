@@ -35,6 +35,12 @@ public class BookServiceImpl implements IBookService {
 		return dao.insertBook(vo);
 	}
 
+	@Override
+	public List<BookVo> bookList(BookVo vo) {
+		logger.info("BookServiceImpl 책검색");
+		return dao.bookList(vo);
+	}
+
 
 
 }
