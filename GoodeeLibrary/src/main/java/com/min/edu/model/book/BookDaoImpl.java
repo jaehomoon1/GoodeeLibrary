@@ -38,4 +38,10 @@ public class BookDaoImpl implements IBookDao {
 		return sqlSession.insert(NS+"insertBook",vo);
 	}
 
+	@Override
+	public List<BookVo> bookList(BookVo vo) {
+		logger.info("BookDaoImpl 책 검색 {}", vo);
+		return sqlSession.selectList(NS+"bookList",vo);
+	}
+
 }
