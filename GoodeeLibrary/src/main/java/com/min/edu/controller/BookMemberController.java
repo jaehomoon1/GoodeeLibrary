@@ -90,4 +90,9 @@ public class BookMemberController {
 		return isc?"redirect:/loginForm.do":"redirect:/signupForm.do";
 	}
 	
+	
+	@GetMapping(value = "/memberInfo.do")
+	public String memberInfo() {
+		return "member/memberInfo";
+	}
 }
