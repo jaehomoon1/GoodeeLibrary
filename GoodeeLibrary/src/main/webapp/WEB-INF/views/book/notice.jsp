@@ -76,7 +76,7 @@
 		      <li><a href="./loginForm.do"><span class="glyphicon glyphicon-user"></span>로그인</a></li>
 	      </c:if>
 	      <c:if test="${mvo != null}">
-	          <li><a href="#">${mvo.id} 님</a></li>
+	          <li><a href="#">${mvo.id} 님 (${(mvo.auth eq "U")?"사용자":"관리자"})</a></li>
 		      <li><a href="./logout.do"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
 	      </c:if>
       </ul>

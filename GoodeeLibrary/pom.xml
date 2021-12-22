@@ -11,6 +11,7 @@
 		<org.springframework-version>5.2.12.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.9.6</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
+      <org.springframework-security>5.4.6</org.springframework-security>
 	</properties>
 	
   <name>GoodeeLibrary Maven Webapp</name>
@@ -245,6 +246,33 @@
     		<artifactId>spring-context-support</artifactId>
     		<version>${org.springframework-version}</version>
 		</dependency>
+		
+		<!-- Spring security 다른 곳에 더 많으나 오늘은 웹이나 간단한게만 함 다른 프로젝트 참조 -->
+      <!-- web.core 두개만 있어도 된다. -->
+      <!-- Spring Security 라이브러리 -->
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-core</artifactId>
+          <version>${org.springframework-security}</version>
+      </dependency>
+      
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-web</artifactId>
+          <version>${org.springframework-security}</version>
+      </dependency>
+          
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-config</artifactId>
+          <version>${org.springframework-security}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-taglibs</artifactId>
+          <version>${org.springframework-security}</version>
+      </dependency>
 		
   </dependencies>
   

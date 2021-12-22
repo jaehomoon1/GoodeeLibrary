@@ -2,6 +2,7 @@ package com.min.edu.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,9 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.min.edu.model.IBookMemberService;
 import com.min.edu.vo.BookMemberVo;
@@ -27,29 +30,35 @@ public class BookMemberController {
 	@Autowired
 	private IBookMemberService service;
 	
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String login(@RequestParam("id") String id, @RequestParam("pw") String pw,
-						HttpSession session, HttpServletResponse resp) throws IOException {
-		BookMemberVo vo = new BookMemberVo();
-		vo.setId(id);
-		vo.setPassword(pw);
-		BookMemberVo result = service.loginMember(vo);
-		if(result == null) {
-			resp.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = resp.getWriter();
-			out.println("<script>alert('아이디나 비밀번호가 일치하지 않습니다.');</script>");
-			out.flush();
-			return "member/loginForm";
-		}
-		session.setAttribute("mvo", result);
-		logger.info("session에 들어있는 값 : {}", session.getAttribute("mvo"));
-		return "book/notice";
-	}
 	
 	@GetMapping(value = "/loginForm.do")
 	public String loginForm() {
 		logger.info("loginForm으로 이동");
 		return "member/loginForm";
+	}
+	
+	@PostMapping(value = "/loginCheckMap.do")
+	@ResponseBody
+	public Map<String, String> loginCheckMap(@RequestParam Map<String, Object> iMap){
+		Map<String, String> map = new HashMap<String, String>();
+		BookMemberVo mDto = service.loginMember(iMap);
+		logger.info("MemberController loginCheckMap 로그인된 값 {}", mDto);
+		if(mDto == null) {
+			map.put("isc", "실패");
+		}else {
+			map.put("isc", "성공");
+		}
+		return map;
+	}
+	
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	public String login(@RequestParam Map<String, Object> map,
+						HttpSession session) {
+		logger.info("*&^*&^&*{}", map);
+		BookMemberVo result = service.loginMember(map);
+		session.setAttribute("mvo", result);
+		logger.info("session에 들어있는 값 : {}", session.getAttribute("mvo"));
+		return "book/notice";
 	}
 	
 	@GetMapping(value = "/logout.do")
@@ -63,6 +72,22 @@ public class BookMemberController {
 	public String signupForm() {
 		logger.info("signupForm 이동");
 		return "member/signupForm";
+	}
+	
+	@PostMapping(value = "/idCheck.do")
+	@ResponseBody
+	public Map<String, String> idCheck(String id){
+		Map<String, String> map = new HashMap<String, String>();
+		boolean isc = service.idDuplicateCheck(id);
+		map.put("isc", String.valueOf(isc));
+		return map;
+	}
+	
+	@PostMapping(value = "/signup.do")
+	public String signup(BookMemberVo vo) {
+		logger.info("signup 실행");
+		boolean isc = service.insertMember(vo);
+		return isc?"redirect:/loginForm.do":"redirect:/signupForm.do";
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.min.edu.model;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ public class BookMemberServiceImpl implements IBookMemberService {
 
 
 	@Override
-	public int insertMember(BookMemberVo vo) {
+	public boolean insertMember(BookMemberVo vo) {
 		return dao.insertMember(vo);
 	}
 
@@ -32,8 +34,23 @@ public class BookMemberServiceImpl implements IBookMemberService {
 	}
 
 	@Override
-	public BookMemberVo loginMember(BookMemberVo vo) {
-		return dao.loginMember(vo);
+	public BookMemberVo loginMember(Map<String, Object> map) {
+		return dao.loginMember(map);
+	}
+
+	@Override
+	public String selStringPw(String id) {
+		return dao.selStringPw(id);
+	}
+
+	@Override
+	public BookMemberVo enLogin(String id) {
+		return dao.enLogin(id);
+	}
+
+	@Override
+	public boolean idDuplicateCheck(String id) {
+		return dao.idDuplicateCheck(id);
 	}
 	
 }

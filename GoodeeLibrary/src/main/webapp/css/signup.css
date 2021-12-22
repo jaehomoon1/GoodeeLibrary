@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+#container{
+	position: relative;
+	top: 100px;
+	width: 900px;
+	margin: auto;
+}
+
+#titlt{
+	position: relative;
+	text-align: center;
+}
+
+#info{
+	position: relative;
+	margin: 10px;
+	width: 850px;
+}
+
+#leftInfo{
+	float: left;
+	width: 200px;
+	height: 360px;
+	margin-left: 20px;
+	margin-right: 50px;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 40px;
+}
+
+#centerInfo{
+	width: 800px;
+}
+
+#bottomInfo{
+	position: relative;
+	width: 900px;
+	font-size: 10px;
+}
+
+#name, #id, #password, #passChk, #nickname, #phone{
+	margin-bottom: 15px;
+	width: 400px;
+	height: 30px;
+}
+
+#button{
+	margin-top: 50px;
+	position: relative;
+	text-align: center;
+}
+
+
