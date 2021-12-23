@@ -58,7 +58,8 @@ SELECT NVL(COUNT(*),0)
 	FROM BOOK_BOARD
             
             
-            
+CREATE SEQUENCE BM_SEQ START WITH 8;
+DROP SEQUENCE BM_SEQ;
             
             
             

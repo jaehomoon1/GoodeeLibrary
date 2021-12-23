@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="./css/notice.css"></script>
+  <script type="text/javascript" src="./css/damagedBook.css"></script>
   <link rel="shortcut icon" href="resources/imgs/favicon.ico" type="image/x-icon">
   <link rel="icon" href="resources/imgs/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
@@ -51,37 +51,8 @@
 </style>
 <body>
 
-<nav class="navbar navbar-inverse" id="nav1">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <div>
-      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./search_book.do'" style="cursor: pointer;">
-      </div>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="./search_book.do">도서검색</a></li>
-        <li><a href="#">도서반납</a></li>
-        <li><a href="#">도서요청</a></li>
-        <li  class="active"><a href="./boardList.do">도서신고</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-       	 <c:if test="${mvo == null}">
-		      <li><a href="./loginForm.do"><span class="glyphicon glyphicon-user"></span>로그인</a></li>
-	      </c:if>
-	      <c:if test="${mvo != null}">
-	          <li><a href="#">${mvo.id} 님</a></li>
-		      <li><a href="./logout.do"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
-	      </c:if>
-      </ul>
-    </div>
-  </div>
-</nav>
+<%@ include file="../book/navbar.jsp" %>
+
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">

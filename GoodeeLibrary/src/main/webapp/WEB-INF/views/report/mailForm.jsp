@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<%@ include file="../book/navbar.jsp" %>
+
 	<h2>메일 보내기</h2>
 	<div id="container">
 		<form action="./mailSender.do" method="post">
