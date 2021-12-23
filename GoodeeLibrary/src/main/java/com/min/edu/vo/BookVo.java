@@ -99,6 +99,23 @@ public class BookVo {
 		this.price = price;
 	}
 
+	public BookVo(int book_seq, String thumbnail, String title, String authors, String publisher, String datetime,
+			String isbn, String contents, int price, String delflag) {
+		super();
+		this.book_seq = book_seq;
+		this.thumbnail = thumbnail;
+		this.title = title;
+		this.authors = authors;
+		this.publisher = publisher;
+		this.datetime = datetime;
+		this.isbn = isbn;
+		this.contents = contents;
+		this.price = price;
+		this.delflag = delflag;
+	}
+	
+	
+
 	
 	
 }

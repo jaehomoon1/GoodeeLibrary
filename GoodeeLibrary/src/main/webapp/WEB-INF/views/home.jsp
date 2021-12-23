@@ -11,6 +11,7 @@
 \(❁´◡`❁)/\(❁´◡`❁)╰(*°▽°*)╯╰(*°▽°*)╯<br>
 <a href="./search_book.do">책검색</a><br>
 <a href="./loginForm.do">로그인화면</a>
+<a href="./bookList.do">북리스트검색</a>
 <br><br>
 
 <a href="./notice.do">공지사항</a>

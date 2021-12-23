@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.min.edu.model.bd.IBdService;
 import com.min.edu.model.book.IBookService;
 import com.min.edu.vo.BookVo;
 
@@ -42,5 +42,34 @@ public class BookController {
 		logger.info("BookController 공지사항 실행");
 		return "book/notice";
 	}
+	
+
+	@GetMapping(value = "/bookList.do")
+	public String bookList(String searchWord, Model model) {
+	
+		if(searchWord == null) {
+			BookVo vo = new BookVo();
+			vo.setTitle("");
+			List<BookVo> lists = bookService.bookList(vo);
+			
+			model.addAttribute("lists",lists);
+			model.addAttribute("searchWord", searchWord);
+			
+			return "book/bookList";
+		}
+		
+		logger.info("BookController 책 리스트 검색");
+		BookVo vo = new BookVo();
+		vo.setTitle(searchWord);
+		
+		List<BookVo> lists = bookService.bookList(vo);
+		
+		
+		model.addAttribute("lists",lists);
+		model.addAttribute("searchWord", searchWord);
+		
+		return "book/bookList";
+	}
+	
 	
 }
