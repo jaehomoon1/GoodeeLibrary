@@ -55,14 +55,14 @@ public class BookMemberController {
 		BookMemberVo result = service.loginMember(map);
 		session.setAttribute("mvo", result);
 		logger.info("session에 들어있는 값 : {}", session.getAttribute("mvo"));
-		return "book/notice";
+		return "redirect:/search_book.do";
 	}
 	
 	@GetMapping(value = "/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		logger.info("세션 Cleanup");
-		return "book/notice";
+		return "redirect:/search_book.do";
 	}
 	
 	@GetMapping(value = "/signupForm.do")
