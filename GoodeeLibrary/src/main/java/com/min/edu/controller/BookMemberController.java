@@ -54,15 +54,21 @@ public class BookMemberController {
 		logger.info("*&^*&^&*{}", map);
 		BookMemberVo result = service.loginMember(map);
 		session.setAttribute("mvo", result);
+		BookMemberVo vo = (BookMemberVo)session.getAttribute("mvo");
 		logger.info("session에 들어있는 값 : {}", session.getAttribute("mvo"));
-		return "redirect:/search_book.do";
+		if(vo.getAuth().equals("U")) {
+			return "redirect:/bookList.do";
+		}else {
+			return "redirect:/search_book.do";
+		}
+	
 	}
 	
 	@GetMapping(value = "/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		logger.info("세션 Cleanup");
-		return "redirect:/search_book.do";
+		return "redirect:/bookList.do";
 	}
 	
 	@GetMapping(value = "/signupForm.do")
