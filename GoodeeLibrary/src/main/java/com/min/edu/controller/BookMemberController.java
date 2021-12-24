@@ -98,4 +98,5 @@ public class BookMemberController {
 	public String memberInfo() {
 		return "member/memberInfo";
 	}
+	
 }
