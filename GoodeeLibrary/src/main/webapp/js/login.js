@@ -21,7 +21,7 @@ function loginCheck(){
 	
 	//유효성 검사 후 ajax 로그인
 	if(id.value == "" || id.value.trim() == ""){
-		swal("로그인", "아이디를 입력해 주세요");
+		swal("로그인", "이메일를 입력해 주세요");
 		id.value="";
 		id.focus();
 	}else if(password.value == "" || password.value.trim() == ""){

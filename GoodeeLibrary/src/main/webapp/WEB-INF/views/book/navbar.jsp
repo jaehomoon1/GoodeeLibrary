@@ -14,11 +14,17 @@
         <span class="icon-bar"></span>                        
       </button>
       <div>
-      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./search_book.do'" style="cursor: pointer;">
+      	<img id="logo" class="logo" alt="logo" src="./imgs/logo.png" onclick="location.href='./bookList.do'" style="cursor: pointer;">
       </div>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
+      	<c:if test="${!mvo eq null}">
+	        <li><a href="./bookList.do">도서검색</a></li>
+      	</c:if>
+      	<c:if test="${mvo.auth eq 'A'}">
+	        <li><a href="./search_book.do">도서등록</a></li>
+      	</c:if>
         <c:if test="${mvo.auth eq 'U'}">
 	        <li><a href="#">도서반납</a></li>
 	        <li><a href="#">도서요청</a></li>
