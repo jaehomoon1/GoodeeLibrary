@@ -19,7 +19,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-      	<c:if test="${!mvo eq null}">
+      	<c:if test="${mvo == null}">
 	        <li><a href="./bookList.do">도서검색</a></li>
       	</c:if>
       	<c:if test="${mvo.auth eq 'A'}">
