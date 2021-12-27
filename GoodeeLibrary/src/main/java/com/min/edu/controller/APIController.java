@@ -1,5 +1,7 @@
 package com.min.edu.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,7 @@ public class APIController {
 	public static String kakao_rest_api_appkey = "07535f2f0d93aa2cb98883e2dbaeda11"; //본인거추가
 
 	@GetMapping(value = "/kakao_book.do")
-	public String kakaoBook(Model model, @RequestParam String searchWord) {
+	public String kakaoBook(Model model, @RequestParam(required = false) String searchWord, HttpSession session) {
 		logger.info("카카오 검색(북) {}", searchWord);
 		
 		RestTemplate restTemplate = new RestTemplate();
@@ -40,6 +42,33 @@ public class APIController {
 		if(searchWord == "") {
 			return "book/searchBook";
 		}
+		
+		
+		if(searchWord == null) {
+			searchWord = (String) session.getAttribute("Word");
+			MultiValueMap<String, String> header = new LinkedMultiValueMap<String, String>();
+			header.add("Authorization", "KakaoAK "+kakao_rest_api_appkey);
+			
+			//Response객체를 보내줘야함
+			// 처리방식 GET , URL , header , 받는 객체 kakaobook
+			ResponseEntity<kakaoBook> kakaoBookResponseEntitiy =  
+					restTemplate.exchange(
+							kakao_book_rest_uri + "&query="+searchWord,
+							HttpMethod.GET,
+							new HttpEntity<>(header),
+							kakaoBook.class
+							);
+		
+			kakaoBook = kakaoBookResponseEntitiy.getBody(); //jackson property에 담아줌
+		
+			logger.info("카카오 북에 요청된 결과 값 \n {}",kakaoBook);
+			model.addAttribute("searchWord", searchWord);
+			model.addAttribute("book_name", searchWord);
+			model.addAttribute("kakaoBook",kakaoBook);
+			session.setAttribute("Word", searchWord);
+			return "book/searchBook";
+		}
+		
 		//kakao 전송을 위한 헤더정보인 Authorization KakaoAK {appkey}를 요청 할때 보내
 		MultiValueMap<String, String> header = new LinkedMultiValueMap<String, String>();
 		header.add("Authorization", "KakaoAK "+kakao_rest_api_appkey);
@@ -60,7 +89,7 @@ public class APIController {
 		model.addAttribute("searchWord", searchWord);
 		model.addAttribute("book_name", searchWord);
 		model.addAttribute("kakaoBook",kakaoBook);
-		
+		session.setAttribute("Word", searchWord);
 		return "book/searchBook";
 	}
 	
@@ -129,7 +158,7 @@ public class APIController {
 		}
 	
 		
-		return "book/searchBook";
+		return "redirect:/kakao_book.do";
 		
 	}
 	

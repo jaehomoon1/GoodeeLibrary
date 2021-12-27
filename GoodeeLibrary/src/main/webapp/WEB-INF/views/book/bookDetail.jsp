@@ -14,12 +14,21 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function kakaobook(){
+	
+	var book = document.getElementById("title").value;
+	location.href="./kakao_book.do?searchWord="+book;
+	id.focus();
+}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="./insertBook.do" method="post">
+	<form action="./insertBook.do" method="post" onsubmit="kakaobook()">
  		<input type="hidden" value="${thumbnail}" name="thumbnail">
-       	<input type="hidden" value="${title}" name="title">
+       	<input type="hidden" value="${title}" name="title" id="title">
        	<input type="hidden" value="${contents}" name="contents">
        	<input type="hidden" value="${datetime}" name="datetime">
        	<input type="hidden" value="${isbn}" name="isbn">
