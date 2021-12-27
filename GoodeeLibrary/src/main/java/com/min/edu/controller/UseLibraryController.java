@@ -3,16 +3,21 @@ package com.min.edu.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.min.edu.model.IUseLibraryService;
 import com.min.edu.vo.BookLoanVo;
+import com.min.edu.vo.BookMemberVo;
+import com.min.edu.vo.BookVo;
 
 @Controller
 public class UseLibraryController {
@@ -37,20 +42,17 @@ public class UseLibraryController {
 		return "library/result";
 	}
 	
-	@GetMapping(value = "/insertLoan.do")
-	public String insertLoan(Map<String, Object> map, @RequestParam int memSeq, @RequestParam int bookSeq,
-							 Model model) {
+	@PostMapping(value = "/insertLoan.do")
+	public String insertLoan(Map<String, Object> map, String title, HttpSession session) {
 		logger.info("UseLibraryController insertLoan 실행");
-		map.put("seq", memSeq);
-		map.put("book_seq", bookSeq);
+		BookMemberVo vo = (BookMemberVo) session.getAttribute("mvo");
+		map.put("seq", vo.getMember_seq());
+		map.put("title", title);
 		
-		int il = service.insertLoan(map);
-		int ibd = service.insertBookDetail(map);
+		service.insertLoan(map);
+		service.insertBookDetail(map);
 		
-		model.addAttribute("il", il);
-		model.addAttribute("ibd", ibd);
-		
-		return "library/result";
+		return "book/loanEnd";
 	}
 	
 	@GetMapping(value = "/insertReservation.do")
@@ -77,6 +79,45 @@ public class UseLibraryController {
 		model.addAttribute("lists", lists);
 		
 		return "library/result";
+	}
+	
+	@PostMapping(value = "/bookLoanForm.do")
+	public String bookdetail(String thumbnail ,String title ,String contents,
+			String datetime, String isbn, String price,
+			String publisher, String authors ,Model model) {
+
+		int n = service.countBook(title);
+		boolean checkBookSeq = service.checkBookSeq(title);
+		
+		model.addAttribute("authors",authors);
+		model.addAttribute("publisher",publisher);
+		model.addAttribute("datetime",datetime);
+		model.addAttribute("isbn",isbn);
+		model.addAttribute("price",price);
+		model.addAttribute("contents",contents);
+		model.addAttribute("thumbnail",thumbnail);
+		model.addAttribute("title",title);
+		model.addAttribute("countBook", n);
+		model.addAttribute("checkBookSeq", checkBookSeq);
+		
+		
+		return "book/bookLoan";
+	}
+	
+	@GetMapping(value = "/returnBookForm.do")
+	public String returnBookForm(HttpSession session, Model model) {
+		BookMemberVo vo = (BookMemberVo) session.getAttribute("mvo");
+		List<BookVo> lists = service.memberLoanBook(vo.getId());
+		
+		model.addAttribute("lists", lists);
+		
+		return "book/returnBookForm";
+	}
+	
+	@PostMapping(value = "/returnBook.do")
+	public String returnBook(int book_seq) {
+		service.returnBookUpdate(book_seq);
+		return "redirect:/returnBookForm.do";
 	}
 
 }

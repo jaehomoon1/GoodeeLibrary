@@ -109,27 +109,13 @@ h3 {
 </style>
 
 <script type="text/javascript">
-	var id = document.getElementById("book_name");
 	
-	function bookList(){
-		
-		var book = document.getElementById("book_name").value;
-		location.href="./bookList.do?searchWord="+book;
-		id.focus();
-	}
-	
-	function Enter_Check(){
-        // 엔터키의 코드는 13입니다.
-	if(event.keyCode == 13){
-		bookList();  // 실행할 이벤트
-		}
-	}
-	 function bookLoan(a){
+	 function returnBook(a){
 		 	var step;
 		 	
 		 	for (step = 1; step<11; step++){
 		 		if(a==step){
-		 			document.getElementById("bookLoan_form"+step).submit();
+		 			document.getElementById("returnBook_form"+step).submit();
 		 		}
 		 	}	 	
 	 }   
@@ -150,15 +136,7 @@ h3 {
 		<h3>
 			<b>지식을 긷는 우물</b>
 		</h3>
-		<div class="form-inline">
-			<div class="input-group">
-				<input type="text" id="book_name" name="book_name" class="form-control" size="50"
-					placeholder="검색하실 도서명을 입력해주세요" onkeydown="Enter_Check();" value="${book_name}">
-				<div class="input-group-btn">
-					<button id="search" class="btn btn-success" onclick=bookList()>도서 검색</button>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 
 	<div class="container">
@@ -169,7 +147,7 @@ h3 {
 						<th>이미지</th>
 						<th>제목</th>
 						<th>저자</th>
-						<th>내용</th>
+						<th>반납하기</th>
 					</tr>
 				</thead>
 
@@ -179,8 +157,9 @@ h3 {
 					<tr>
 
 						<td>
-							<form action="./bookLoanForm.do" method="post"
-								id="bookLoan_form${status.count}">
+							<form action="./returnBook.do" method="post"
+								id="returnBook_form${status.count}">
+								<input type="hidden" value="${book.book_seq}" name="book_seq">
 								<input type="hidden" value="${book.thumbnail}" name="thumbnail">
 								<input type="hidden" value="${book.title}" name="title">
 								<input type="hidden" value="${book.contents}" name="contents">
@@ -189,13 +168,12 @@ h3 {
 									type="hidden" value="${book.price}" name="price"> <input
 									type="hidden" value="${book.publisher}" name="publisher">
 								<input type="hidden" value="${book.authors}" name="authors">
-							</form> <a href="#" onclick="bookLoan(${status.count})"> <img
-								src="${book.thumbnail}">
-						</a>
+							</form> 
+							<img src="${book.thumbnail}">
 						</td>
-						<td><a href="#" onclick="bookLoan(${status.count})">${book.title}</a></td>
+						<td>${book.title}</td>
 						<td>${book.authors}</td>
-						<td>${book.contents}</td>
+						<td><button class="btn btn-primary" onclick="returnBook(${status.count})">반납하기</button></td>
 					</tr>
 			</c:forEach>
 			</tbody>

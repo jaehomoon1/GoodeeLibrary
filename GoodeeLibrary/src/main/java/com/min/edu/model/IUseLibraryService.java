@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.min.edu.vo.BookLoanVo;
+import com.min.edu.vo.BookVo;
 
 public interface IUseLibraryService {
 
@@ -17,5 +18,13 @@ public interface IUseLibraryService {
 	public int updateDetailR(int seq);
 	
 	public List<BookLoanVo> memberLoanList(String id);
+	
+	public int countBook(String title);
+
+	public boolean checkBookSeq(String title);
+	
+	public List<BookVo> memberLoanBook(String id);
+
+	public int returnBookUpdate(int book_seq);
 	
 }
