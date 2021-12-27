@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.min.edu.vo.BookLoanVo;
+import com.min.edu.vo.BookVo;
 
 @Repository
 public class UseLibraryDaoImpl implements IUseLibraryDao {
@@ -42,6 +43,8 @@ public class UseLibraryDaoImpl implements IUseLibraryDao {
 	@Override
 	public int insertBookDetail(Map<String, Object> map) {
 		logger.info("UseLibraryDaoImpl insertBookDetail 실행 : {}", map);
+		int n = sqlSession.selectOne(NS+"checkBookSeq", map.get("title"));
+		map.put("book_seq", n);
 		return sqlSession.insert(NS+"insertBookDetail", map);
 	}
 
@@ -61,6 +64,30 @@ public class UseLibraryDaoImpl implements IUseLibraryDao {
 	public List<BookLoanVo> memberLoanList(String id) {
 		logger.info("UseLibraryDaoImpl memberLoanList 실행 : {}", id);
 		return sqlSession.selectList(NS+"memberLoanList", id);
+	}
+
+	@Override
+	public int countBook(String title) {
+		logger.info("UseLibraryDaoImpl countBook 실행 : {}", title);
+		return sqlSession.selectOne(NS+"countBook", title);
+	}
+
+	@Override
+	public boolean checkBookSeq(String title) {
+		logger.info("UseLibraryDaoImpl checkBookSeq 실행 : {}", title);
+		int n = sqlSession.selectOne(NS+"checkBookSeq", title);
+		return (n != 0)?true:false;
+	}
+
+	@Override
+	public List<BookVo> memberLoanBook(String id) {
+		logger.info("UseLibraryDaoImpl memberLoanBook 실행 : {}", id);
+		return sqlSession.selectList(NS+"memberLoanBook", id);
+	}
+
+	@Override
+	public int returnBookUpdate(int book_seq) {
+		return sqlSession.update(NS+"returnBookUpdate", book_seq);
 	}
 
 }

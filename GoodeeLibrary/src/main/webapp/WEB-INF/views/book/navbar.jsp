@@ -19,15 +19,14 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-
-      	<c:if test="${mvo == null}">
+      	<c:if test="${mvo != null}">
 	        <li><a href="./bookList.do">도서검색</a></li>
       	</c:if>
       	<c:if test="${mvo.auth eq 'A'}">
 	        <li><a href="./search_book.do">도서등록</a></li>
       	</c:if>
         <c:if test="${mvo.auth eq 'U'}">
-	        <li><a href="#">도서반납</a></li>
+	        <li><a href="./returnBookForm.do">도서반납</a></li>
 	        <li><a href="#">도서요청</a></li>
 	        <li><a href="./boardList.do">도서신고</a></li>
         </c:if>
