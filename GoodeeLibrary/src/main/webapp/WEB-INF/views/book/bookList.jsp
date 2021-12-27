@@ -127,7 +127,7 @@ h3 {
 	 function bookdetail(a){
 		 	var step;
 		 	
-		 	for (step = 1; step<11; step++){
+		 	for (step = 1; step<=a; step++){
 		 		if(a==step){
 		 			document.getElementById("bookdetail_form"+step).submit();
 		 		}
