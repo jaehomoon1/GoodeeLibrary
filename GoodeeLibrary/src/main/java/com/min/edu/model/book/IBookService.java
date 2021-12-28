@@ -10,4 +10,6 @@ public interface IBookService {
 	public List<BookVo> damagedBookList();
 	public int insertBook(BookVo vo);
 	public List<BookVo> bookList(BookVo vo);
+	public List<BookVo> allBookList();
+	
 }

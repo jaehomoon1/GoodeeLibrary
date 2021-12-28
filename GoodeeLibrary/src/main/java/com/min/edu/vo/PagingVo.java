@@ -17,7 +17,7 @@
 		
 		{
 			logger.info("============ PagingDto 초기화 블럭 실행 시간 {} ============", new Date());
-			pageCnt = 5;
+			pageCnt = 7;
 			index = 0;
 			pageStartNum = 1;
 			listCnt = 5;
@@ -27,6 +27,15 @@
 			
 		}
 	
+		public PagingVo(int pageCnt, int index, int pageStartNum, int listCnt, int total) {
+			super();
+			this.pageCnt = pageCnt;
+			this.index = index;
+			this.pageStartNum = pageStartNum;
+			this.listCnt = listCnt;
+			this.total = total;
+		}
+
 		public PagingVo(String index, String pageStartNum, String listCnt) {
 			logger.info("============ PagingDto 생성자 호출 실행 시간 {} ============", new Date());
 			// view에서 전달 받은 parameter는 "" or null 객체로 판단하면
@@ -54,12 +63,11 @@
 		
 		public int getPageLastNum() {
 			logger.info("============ PagingDto getPageLastNum 호출 실행 시간 {} ============", new Date());
-			//전체개수 - 출력리스트 *(시작번호-1)
-			//107 - 5*(1-1) = 107
+
 			int remainListCnt = total - listCnt *(pageStartNum-1);
-			// 107/5 = 21
+
 			int remainPageCnt = remainListCnt/listCnt;
-			// 107%5 != => 22
+
 			if(remainPageCnt % listCnt != 0) {
 				remainPageCnt++;
 			}
@@ -125,7 +133,7 @@
 
 		@Override
 		public String toString() {
-			return "PagingDto [logger=" + logger + ", pageCnt=" + pageCnt + ", index=" + index + ", pageStartNum="
+			return "PagingDto [pageCnt=" + pageCnt + ", index=" + index + ", pageStartNum="
 					+ pageStartNum + ", listCnt=" + listCnt + ", total=" + total + "]";
 		}
 		

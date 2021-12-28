@@ -23,7 +23,7 @@ public class MailController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@GetMapping(value="/mailform.do")
+	@GetMapping(value="/mailForm.do")
 	public String mailForm() {
 		logger.info("MailController 메일 작성 화면");
 		return "report/mailForm";
@@ -54,7 +54,7 @@ public class MailController {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/mailform.do";
+		return "redirect:/mailForm.do";
 	}
 	
 }

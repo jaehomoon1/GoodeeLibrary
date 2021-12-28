@@ -54,7 +54,7 @@ function kakaobook(){
        <td><img src="${thumbnail}"></td>
         <td>${title}</td>
         <td>${authors}</td>
-        <td> ${contents}</td>
+        <td>${contents}</td>
         <td>${publisher}</td>
          <td>${datetime}</td>
         <td>${isbn}</td>

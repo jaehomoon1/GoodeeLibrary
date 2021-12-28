@@ -15,8 +15,8 @@ public class BdDaoImpl implements IBdDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public int damagedBook(int seq) {
-		return sqlSession.update("com.min.edu.model.bd.BdDaoImpl.damagedBook", seq);
+	public int damagedBook(int damage_seq) {
+		return sqlSession.update("com.min.edu.model.bd.BdDaoImpl.damagedBook", damage_seq);
 	}
 
 }
