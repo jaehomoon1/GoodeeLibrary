@@ -74,7 +74,7 @@
 	 function bookLoan(a){
 		 	var step;
 		 	
-		 	for (step = 1; step<11; step++){
+		 	for (step = 1; step<=a; step++){
 		 		if(a==step){
 		 			document.getElementById("bookLoan_form"+step).submit();
 		 		}
