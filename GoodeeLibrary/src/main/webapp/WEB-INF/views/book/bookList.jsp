@@ -17,60 +17,7 @@
 	type="image/x-icon">
 <link rel="icon" href="resources/imgs/favicon.ico" type="image/x-icon"
 	sizes="16x16">
-<style>
-.jumbotron {
-	color: #5d4157;
-	background: #abecd6;
-	margin-top: -20px;
-}
 
-.logo {
-	width: 150px;
-	height: 150px;
-	margin-top: -30px;
-	margin-bottom: -30px;
-}
-
-h1 {
-	margin-top: 30px;
-	margin-bottom: -10px;
-}
-
-h3 {
-	margin-bottom: 50px;
-}
-.navbar {
-		background: #abecd6;
-		border: none;
-	}
-#logo {
-		width: 100px;
-		height: 100px;
-		margin-top: 8px;
-		margin-left: -10px;
-		margin-bottom: -8px;
-	}
-#myNavbar ul li a {
-		color: #5d4157;
-		text-align: center;	
-		height: 100px;
-		display: flex;
-		align-items: center;
-		font-weight: bolder;
-	}
-#myNavbar ul li a:hover {
-		color: white;
-		background: #4dd0a3;
-	}
-#myNavbar ul li span {
-		margin-top: -5px;
-		margin-right: 10px;
-	}
-#nav1 .navbar-nav>.active>a{
-		color: white;
-		background: #49c69c;
-	}
-</style>
 <title>책검색</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.js"></script>

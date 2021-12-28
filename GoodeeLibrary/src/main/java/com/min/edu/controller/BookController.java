@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.min.edu.model.bd.IBdService;
 import com.min.edu.model.book.IBookService;
 import com.min.edu.vo.BookVo;
 
@@ -22,27 +23,23 @@ public class BookController {
 	@Autowired
 	private IBookService bookService;
 	
-	@RequestMapping(value="/damagedBook.do", method= {RequestMethod.POST, RequestMethod.GET})
-	public String damagedBook() {
+	@Autowired
+	private IBdService bdService;
+	
+	@RequestMapping(value="/damagedBook.do", method=RequestMethod.GET)
+	public String damagedBook(int damage_seq) {
 		logger.info("BookController 훼손 도서 신고 실행");
-//		bdService
+		bdService.damagedBook(damage_seq);
 		return "report/damagedBook";
 	}
 	
-	@RequestMapping(value="/damagedBookList.do", method= {RequestMethod.GET})
+	@RequestMapping(value="/damagedBookList.do", method=RequestMethod.GET)
 	public String damagedBookList(Model model) {
 		logger.info("BookController 훼손 도서 목록 실행");
 		List<BookVo> blist = bookService.damagedBookList();
 		model.addAttribute("blist", blist);
 		return "report/damagedBookList";
 	}
-
-	@RequestMapping(value="/notice.do", method=RequestMethod.GET)
-	public String notice() {
-		logger.info("BookController 공지사항 실행");
-		return "book/notice";
-	}
-	
 
 	@GetMapping(value = "/bookList.do")
 	public String bookList(String searchWord, Model model) {
@@ -71,5 +68,20 @@ public class BookController {
 		return "book/bookList";
 	}
 	
+	@RequestMapping(value="/allBookList.do", method=RequestMethod.GET)
+	public String allBookList(Model model) {
+		logger.info("BookController 전체 도서 목록 실행");
+		List<BookVo> blist = bookService.allBookList();
+		model.addAttribute("blist", blist);
+		return "report/allBookList";
+	}
+	
+	@RequestMapping(value="/undamagedBookList.do", method=RequestMethod.GET)
+	public String undamagedBookList(Model model) {
+		logger.info("BookController 미훼손 도서 목록 실행");
+		List<BookVo> blist = bookService.undamagedBookList();
+		model.addAttribute("blist", blist);
+		return "report/undamagedBookList";
+	}
 	
 }

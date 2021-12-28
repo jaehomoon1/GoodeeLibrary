@@ -44,4 +44,10 @@ public class BookDaoImpl implements IBookDao {
 		return sqlSession.selectList(NS+"bookList",vo);
 	}
 
+	@Override
+	public List<BookVo> allBookList() {
+		logger.info("BookDaoImpl 전체 도서 검색");
+		return sqlSession.selectList(NS+"allBookList");
+	}
+
 }

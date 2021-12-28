@@ -14,9 +14,9 @@ public class BdServiceImpl implements IBdService {
 	private IBdDao dao;
 	
 	@Override
-	public int damagedBook(int seq) {
+	public int damagedBook(int damage_seq) {
 		log.info("BdServiceImpl 훼손 도서 신고");
-		return dao.damagedBook(seq);
+		return dao.damagedBook(damage_seq);
 	}
 
 }

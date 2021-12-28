@@ -45,7 +45,16 @@
 		AND DELFLAG = 'N' GROUP BY THUMBNAIL, TITLE,
 		AUTHORS, PUBLISHER, DATETIME,
 		ISBN, CONTENTS, PRICE,
-		DELFLAG 
+		DELFLAG ORDER BY TITLE DESC
+</select> 
+
+
+<!-- 전체 도서 목록 조회 -->
+<select id="allBookList" resultType="bookVo">
+	SELECT b.THUMBNAIL , b.TITLE , b.AUTHORS , b.PUBLISHER , b.CONTENTS 
+		FROM BOOK b JOIN BOOK_DETAIL bd
+		ON b.BOOK_SEQ = bd.BOOK_SEQ 
+		DELFLAG ORDER BY TITLE DESC
 </select> 
 
 </mapper>

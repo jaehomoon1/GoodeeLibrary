@@ -9,6 +9,7 @@ public class BookBoardVo {
 	private String content;
 	private String delflag;
 	private String regdate;
+	private int rnum;
 	
 	public int getBoard_seq() {
 		return board_seq;
@@ -53,10 +54,17 @@ public class BookBoardVo {
 		this.regdate = regdate;
 	}
 	
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
 	@Override
 	public String toString() {
 		return "BookBoardVo [board_seq=" + board_seq + ", board_type=" + board_type + ", id=" + id + ", title=" + title
-				+ ", content=" + content + ", delflag=" + delflag + ", regdate=" + regdate + "]";
+				+ ", content=" + content + ", delflag=" + delflag + ", regdate=" + regdate + ", rnum=" + rnum + "]";
 	}
 	
 	public BookBoardVo() {

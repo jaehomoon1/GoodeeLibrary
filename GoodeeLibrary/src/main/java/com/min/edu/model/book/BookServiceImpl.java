@@ -26,7 +26,7 @@ public class BookServiceImpl implements IBookService {
 	@Override
 	public List<BookVo> damagedBookList() {
 		logger.info("BookServiceImpl 훼손 목록 조회");
-		return dao.undamagedBookList();
+		return dao.damagedBookList();
 	}
 
 	@Override
@@ -39,6 +39,12 @@ public class BookServiceImpl implements IBookService {
 	public List<BookVo> bookList(BookVo vo) {
 		logger.info("BookServiceImpl 책검색");
 		return dao.bookList(vo);
+	}
+
+	@Override
+	public List<BookVo> allBookList() {
+		logger.info("BookServiceImpl allBookList 전체 목록 조회");
+		return dao.allBookList();
 	}
 
 
