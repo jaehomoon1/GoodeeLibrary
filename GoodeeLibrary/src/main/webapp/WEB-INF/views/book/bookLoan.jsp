@@ -15,20 +15,19 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-function kakaobook(){
-	
-	var book = document.getElementById("title").value;
-	location.href="./kakao_book.do?searchWord="+book;
-	id.focus();
-}
-
+	window.onload = function(){
+		var loanBtn = document.getElementById('loanBtn');
+		if(${checkBookSeq} && !${mvo eq null} && ${mvo.auth eq 'U'}){
+			loanBtn.removeAttribute("disabled");
+		}
+	}
 </script>
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="./insertBook.do" method="post" onsubmit="kakaobook()">
+	<form action="./insertLoan.do" method="post">
  		<input type="hidden" value="${thumbnail}" name="thumbnail">
-       	<input type="hidden" value="${title}" name="title" id="title">
+       	<input type="hidden" value="${title}" name="title">
        	<input type="hidden" value="${contents}" name="contents">
        	<input type="hidden" value="${datetime}" name="datetime">
        	<input type="hidden" value="${isbn}" name="isbn">
@@ -54,7 +53,7 @@ function kakaobook(){
        <td><img src="${thumbnail}"></td>
         <td>${title}</td>
         <td>${authors}</td>
-        <td>${contents}</td>
+        <td> ${contents}</td>
         <td>${publisher}</td>
          <td>${datetime}</td>
         <td>${isbn}</td>
@@ -62,19 +61,8 @@ function kakaobook(){
       </tr>
  	 </tbody>
 	</table>
-	<select name="book_count">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		<option value="7">7</option>
-		<option value="8">8</option>
-		<option value="9">9</option>
-		<option value="10">10</option>
-	</select>
-	<input type="submit" value="등록하기" class="btn btn-info">
+	<input type="text" value="${countBook}" readonly="readonly">
+	<input type="submit" value="도서대출" id="loanBtn" class="btn btn-info" disabled="disabled">
 	<a href="javascript:history.back()" class="btn btn-info">취소</a>
 	</form>
 </body>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.min.edu.vo.BookLoanVo;
+import com.min.edu.vo.BookVo;
 
 @Service
 public class UseLibraryServiceImpl implements IUseLibraryService {
@@ -47,6 +48,26 @@ public class UseLibraryServiceImpl implements IUseLibraryService {
 	@Override
 	public List<BookLoanVo> memberLoanList(String id) {
 		return dao.memberLoanList(id);
+	}
+
+	@Override
+	public int countBook(String title) {
+		return dao.countBook(title);
+	}
+
+	@Override
+	public boolean checkBookSeq(String title) {
+		return dao.checkBookSeq(title);
+	}
+
+	@Override
+	public List<BookVo> memberLoanBook(String id) {
+		return dao.memberLoanBook(id);
+	}
+
+	@Override
+	public int returnBookUpdate(int book_seq) {
+		return dao.returnBookUpdate(book_seq);
 	}
 
 	

@@ -49,7 +49,53 @@ UPDATE BOOK_DETAIL
 <select id="memberLoanList" parameterType="java.lang.String" resultType="loanVo">
 SELECT LOAN_SEQ, LOAN_SDAY, LOAN_EDAY, LOAN_CHECK, MEMBER_SEQ
 		FROM BOOK_LOAN
-		WHERE MEMBER_SEQ = (SELECT MEMBER_SEQ FROM BOOK_MEMBER
+		WHERE LOAN_CHECK = 'N' 
+		AND MEMBER_SEQ = (SELECT MEMBER_SEQ FROM BOOK_MEMBER
 							WHERE ID = #{id})
 </select>
+
+<!-- 도서 반납 -->
+<update id="returnBookUpdate" parameterType="java.lang.Integer">
+UPDATE BOOK_LOAN
+	SET LOAN_CHECK = 'Y'
+	WHERE LOAN_SEQ = (SELECT LOAN_SEQ FROM BOOK_DETAIL
+						WHERE BOOK_SEQ = #{book_seq})	
+</update>
+<!-- 회원이 대출한 도서목록 보기 -->
+<select id="memberLoanBook" parameterType="java.lang.String" resultType="bookVo">
+SELECT *
+	FROM BOOK
+	WHERE BOOK_SEQ IN (
+		SELECT BOOK_SEQ
+			FROM BOOK_DETAIL
+			WHERE LOAN_SEQ IN (
+				SELECT LOAN_SEQ
+					FROM BOOK_LOAN
+					WHERE LOAN_CHECK = 'N'
+					AND MEMBER_SEQ = (SELECT MEMBER_SEQ FROM BOOK_MEMBER
+										WHERE ID = #{id})
+							)
+						)
+</select>
+
+<!-- 도서의 수 -->
+<select id="countBook" parameterType="java.lang.String" resultType="java.lang.Integer">
+SELECT COUNT(*) 
+	FROM BOOK b 
+	WHERE TITLE LIKE #{title}
+	AND DELFLAG LIKE 'N'
+</select>
+
+<!-- 도서 대출을 위한 SEQ 받기 -->
+<select id="checkBookSeq" parameterType="java.lang.String" resultType="java.lang.Integer">
+SELECT NVL(MAX(BOOK_SEQ), 0)
+	FROM BOOK b 
+	WHERE TITLE LIKE #{title}
+	AND DELFLAG LIKE 'N'
+	AND BOOK_SEQ NOT IN (SELECT BOOK_SEQ
+						FROM BOOK_DETAIL)
+</select>
+
+
+
 </mapper>

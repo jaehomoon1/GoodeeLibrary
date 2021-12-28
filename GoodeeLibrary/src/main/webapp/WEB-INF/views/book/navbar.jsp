@@ -32,7 +32,7 @@
 	        <li><a href="./boardList.do">도서신고</a></li>
       	</c:if>
         <c:if test="${mvo.auth eq 'U'}">
-	        <li><a href="#">도서반납</a></li>
+	        <li><a href="./returnBookForm.do">도서반납</a></li>
 	        <li><a href="#">도서요청</a></li>
 	        <li><a href="./boardList.do">도서신고</a></li>
         </c:if>
